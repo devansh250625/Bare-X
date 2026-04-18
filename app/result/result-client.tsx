@@ -93,7 +93,7 @@ export function ResultClient() {
               Products we plan to build with those formulas
             </h2>
             <p className="mt-4 text-base leading-7 text-white/60">
-              These are launch mockups for demand validation. If you show interest, we’ll notify you first and may send samples when Bare-X launches.
+              If your skin needs match one of our six planned products, we show that product here. If a formula is not in our first launch lineup yet, we will clearly mark it as something we are working on.
             </p>
           </div>
 
@@ -105,12 +105,12 @@ export function ResultClient() {
                   <div>
                     <div className="flex flex-wrap items-start justify-between gap-4">
                       <div>
-                    <div className="text-xs uppercase tracking-[0.24em] text-white/45">{product.category}</div>
-                    <h3 className="mt-3 text-2xl font-semibold text-white">{product.name}</h3>
-                    <p className="mt-2 text-sm text-white/55">{product.subtitle}</p>
+                        <div className="text-xs uppercase tracking-[0.24em] text-white/45">{product.category}</div>
+                        <h3 className="mt-3 text-2xl font-semibold text-white">{product.name}</h3>
+                        <p className="mt-2 text-sm text-white/55">{product.subtitle}</p>
                       </div>
                       <div className="rounded-full border border-accent/30 bg-accent/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-accent">
-                        Selected
+                        {product.launchStatus === "planned" ? "Planned Lineup" : "We Are On It"}
                       </div>
                     </div>
                     <div className="mt-6 flex flex-wrap gap-2">
@@ -121,6 +121,11 @@ export function ResultClient() {
                       ))}
                     </div>
                     <p className="mt-6 text-base leading-7 text-white/65">{product.reason}</p>
+                    <p className="mt-4 rounded-2xl border border-white/10 bg-black/25 p-4 text-sm leading-6 text-white/55">
+                      {product.launchStatus === "planned"
+                        ? "This formula is already part of the Bare-X launch direction. Join the list for first access and possible samples when production starts."
+                        : "This exact product is not in our first six-product lineup yet, but your response helps us decide what to develop next."}
+                    </p>
                   </div>
                 </div>
               </div>

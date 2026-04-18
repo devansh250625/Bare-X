@@ -13,7 +13,7 @@ const products = [
     titleTop: "Acne Control",
     titleAccent: "Face Wash",
     details: ["Salicylic Acid 2%", "+ Niacinamide"],
-    meta: "AI Personalized Formula",
+    meta: "Niacinamide + BHA Complex",
     size: "100 ml"
   },
   {
@@ -23,7 +23,7 @@ const products = [
     titleTop: "Barrier Hydrating",
     titleAccent: "Face Wash",
     details: ["Hyaluronic Acid", "+ Ceramides"],
-    meta: "AI Personalized Formula",
+    meta: "Barrier Support Complex",
     size: "100 ml"
   },
   {
@@ -33,7 +33,7 @@ const products = [
     titleTop: "Oil-Free",
     titleAccent: "Moisturizer",
     details: ["Hyaluronic Acid", "+ Ceramides"],
-    meta: "AI Personalized Formula",
+    meta: "Oil-Free Hydration",
     size: "50 ml"
   },
   {
@@ -43,7 +43,7 @@ const products = [
     titleTop: "SPF 50",
     titleAccent: "SUNSCREEN",
     details: ["Broad Spectrum Protection"],
-    meta: "AI Personalized Formula",
+    meta: "No White Cast",
     size: "50 ml"
   },
   {
@@ -53,7 +53,7 @@ const products = [
     titleTop: "Body Acne",
     titleAccent: "Control Wash",
     details: ["Salicylic Acid 2%", "+ Zinc PCA"],
-    meta: "AI Personalized Formula",
+    meta: "Sweat + Breakout Care",
     size: "250 ml"
   },
   {
@@ -63,7 +63,7 @@ const products = [
     titleTop: "Body Repair",
     titleAccent: "Lotion",
     details: ["Urea 5%", "+ Ceramides"],
-    meta: "AI Personalized Formula",
+    meta: "Texture Repair Complex",
     size: "250 ml"
   }
 ];
@@ -202,10 +202,8 @@ function renderSvg(product) {
       .size { font-family: Inter, Arial, sans-serif; font-size: 20px; font-weight: 500; letter-spacing: 0.4px; fill: #F5F5F5; }
     </style>
   </defs>
-  <rect width="1200" height="1200" fill="#050505"/>
-  <rect width="1200" height="1200" fill="url(#grain)" opacity="0.12"/>
-  <ellipse cx="600" cy="980" rx="430" ry="74" fill="url(#floorGlow)" opacity="0.92"/>
-  <ellipse cx="600" cy="1008" rx="330" ry="24" fill="#061D37" opacity="0.7"/>
+  <ellipse cx="600" cy="980" rx="360" ry="58" fill="url(#floorGlow)" opacity="0.62"/>
+  <ellipse cx="600" cy="1008" rx="260" ry="18" fill="#061D37" opacity="0.34"/>
   <g transform="translate(300 170)">
     ${productShape(product)}
   </g>

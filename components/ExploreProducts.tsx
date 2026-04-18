@@ -23,6 +23,21 @@ const showcaseProducts: Array<ProductRecommendation & { tag: string }> = [
     name: "SPF 50 Sunscreen",
     ingredients: ["Broad Spectrum", "No White Cast"],
     tag: "All Skin Types"
+  },
+  {
+    ...productCatalog.hydratingFaceWash,
+    ingredients: ["Hyaluronic Acid", "Ceramides"],
+    tag: "Dry / Sensitive"
+  },
+  {
+    ...productCatalog.bodyWash,
+    ingredients: ["Salicylic Acid 2%", "Zinc PCA"],
+    tag: "Body Acne"
+  },
+  {
+    ...productCatalog.bodyLotion,
+    ingredients: ["Urea 5%", "Ceramides"],
+    tag: "Body Texture"
   }
 ];
 
@@ -57,7 +72,7 @@ export function ExploreProducts() {
             transition={{ duration: 0.7, delay: 0.14 }}
             className="mx-auto mt-5 max-w-2xl text-base leading-7 text-white/62 sm:text-lg"
           >
-            Each formula is selected by AI based on your skin profile and shown in the exact premium Bare-X packaging direction we plan to ship later.
+            These are the six-product launch directions we are validating first. Each product is built around high-demand, practical formulas users can understand.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, scaleX: 0.7 }}

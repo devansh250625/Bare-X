@@ -41,10 +41,8 @@
       .size { font-family: Inter, Arial, sans-serif; font-size: 20px; font-weight: 500; letter-spacing: 0.4px; fill: #F5F5F5; }
     </style>
   </defs>
-  <rect width="1200" height="1200" fill="#050505"/>
-  <rect width="1200" height="1200" fill="url(#grain)" opacity="0.12"/>
-  <ellipse cx="600" cy="980" rx="430" ry="74" fill="url(#floorGlow)" opacity="0.92"/>
-  <ellipse cx="600" cy="1008" rx="330" ry="24" fill="#061D37" opacity="0.7"/>
+  <ellipse cx="600" cy="980" rx="360" ry="58" fill="url(#floorGlow)" opacity="0.62"/>
+  <ellipse cx="600" cy="1008" rx="260" ry="18" fill="#061D37" opacity="0.34"/>
   <g transform="translate(300 170)">
     
     <g filter="url(#softShadow)">
@@ -59,7 +57,7 @@
       <text x="300" y="326" text-anchor="middle" class="accentTitle">Face Wash</text>
       <line x1="222" y1="368" x2="378" y2="368" stroke="#3A86FF" stroke-width="1.5" opacity="0.85"/>
       <text x="300" y="420" text-anchor="middle" class="detail">Salicylic Acid 2%</text><text x="300" y="448" text-anchor="middle" class="detail">+ Niacinamide</text>
-      <text x="300" y="508" text-anchor="middle" class="meta">AI Personalized Formula</text>
+      <text x="300" y="508" text-anchor="middle" class="meta">Niacinamide + BHA Complex</text>
       <text x="300" y="604" text-anchor="middle" class="size">100 ml</text>
     </g>
   </g>

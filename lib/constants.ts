@@ -85,7 +85,8 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     accent: "from-cyan-400 via-blue-500 to-indigo-400",
     finish: "Carbon matte"
     ,
-    formulaFocus: ["Salicylic Acid 2%", "Niacinamide 4%", "Panthenol"]
+    formulaFocus: ["Salicylic Acid 2%", "Niacinamide 4%", "Panthenol"],
+    launchStatus: "planned"
   },
   hydratingFaceWash: {
     assetKey: "hydratingFaceWash",
@@ -100,7 +101,8 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     size: "100 ml",
     accent: "from-sky-300 via-cyan-400 to-blue-500",
     finish: "Satin frost",
-    formulaFocus: ["Hyaluronic Acid", "Glycerin", "Ceramides"]
+    formulaFocus: ["Hyaluronic Acid", "Glycerin", "Ceramides"],
+    launchStatus: "planned"
   },
   oilControlFaceWash: {
     assetKey: "oilControlFaceWash",
@@ -115,7 +117,8 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     size: "100 ml",
     accent: "from-blue-500 via-indigo-500 to-cyan-300",
     finish: "Graphite matte",
-    formulaFocus: ["Niacinamide 5%", "Zinc PCA", "Amino Surfactants"]
+    formulaFocus: ["Niacinamide 5%", "Zinc PCA", "Amino Surfactants"],
+    launchStatus: "inDevelopment"
   },
   sensitiveFaceWash: {
     assetKey: "sensitiveFaceWash",
@@ -130,7 +133,8 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     size: "100 ml",
     accent: "from-cyan-200 via-sky-300 to-blue-400",
     finish: "Soft-touch matte",
-    formulaFocus: ["Aloe Vera", "Ceramides", "Oat Extract"]
+    formulaFocus: ["Aloe Vera", "Ceramides", "Oat Extract"],
+    launchStatus: "inDevelopment"
   },
   gelMoisturizer: {
     assetKey: "gelMoisturizer",
@@ -145,7 +149,8 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     size: "50 ml",
     accent: "from-cyan-300 via-blue-500 to-indigo-500",
     finish: "Obsidian gloss",
-    formulaFocus: ["Hyaluronic Acid", "Ceramides", "Niacinamide"]
+    formulaFocus: ["Hyaluronic Acid", "Ceramides", "Niacinamide"],
+    launchStatus: "planned"
   },
   creamMoisturizer: {
     assetKey: "creamMoisturizer",
@@ -160,7 +165,8 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     size: "50 ml",
     accent: "from-blue-400 via-sky-300 to-cyan-200",
     finish: "Pearl matte",
-    formulaFocus: ["Ceramides", "Shea Butter", "Squalane"]
+    formulaFocus: ["Ceramides", "Shea Butter", "Squalane"],
+    launchStatus: "inDevelopment"
   },
   sunscreen: {
     assetKey: "sunscreen",
@@ -175,7 +181,8 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     size: "50 ml",
     accent: "from-white via-sky-300 to-blue-500",
     finish: "Titanium satin",
-    formulaFocus: ["Broad Spectrum SPF 50", "No White Cast", "Vitamin E"]
+    formulaFocus: ["Broad Spectrum SPF 50", "No White Cast", "Vitamin E"],
+    launchStatus: "planned"
   },
   retinalSerum: {
     assetKey: "retinalSerum",
@@ -190,7 +197,8 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     size: "30 ml",
     accent: "from-blue-400 via-cyan-300 to-white",
     finish: "Black glass satin",
-    formulaFocus: ["Encapsulated Retinal 0.05%", "Peptides", "Bisabolol"]
+    formulaFocus: ["Encapsulated Retinal 0.05%", "Peptides", "Bisabolol"],
+    launchStatus: "inDevelopment"
   },
   bodyWash: {
     assetKey: "bodyWash",
@@ -205,7 +213,8 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     size: "250 ml",
     accent: "from-cyan-400 via-blue-500 to-indigo-500",
     finish: "Matte sport bottle",
-    formulaFocus: ["Salicylic Acid 2%", "Zinc PCA", "Tea Tree"]
+    formulaFocus: ["Salicylic Acid 2%", "Zinc PCA", "Tea Tree"],
+    launchStatus: "planned"
   },
   bodyLotion: {
     assetKey: "bodyLotion",
@@ -220,7 +229,8 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     size: "250 ml",
     accent: "from-sky-300 via-blue-500 to-white",
     finish: "Soft matte pump",
-    formulaFocus: ["Urea 5%", "Lactic Acid", "Ceramides"]
+    formulaFocus: ["Urea 5%", "Lactic Acid", "Ceramides"],
+    launchStatus: "planned"
   }
 };
 

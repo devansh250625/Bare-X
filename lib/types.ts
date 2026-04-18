@@ -58,6 +58,7 @@ export type ProductRecommendation = {
   accent: string;
   finish: string;
   formulaFocus: string[];
+  launchStatus: "planned" | "inDevelopment";
 };
 
 export type FormulaRecommendation = {
