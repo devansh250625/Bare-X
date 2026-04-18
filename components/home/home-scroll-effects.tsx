@@ -8,6 +8,28 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function HomeScrollEffects() {
   useEffect(() => {
+    const shouldUseLightMode =
+      window.matchMedia("(max-width: 767px)").matches ||
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (shouldUseLightMode) {
+      const ctx = gsap.context(() => {
+        gsap.utils.toArray<HTMLElement>("[data-orb]").forEach((element, index) => {
+          gsap.to(element, {
+            y: index % 2 === 0 ? -10 : 8,
+            x: index % 2 === 0 ? 6 : -5,
+            duration: 7 + index,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+          });
+        });
+      });
+
+      return () => ctx.revert();
+    }
+
     const ctx = gsap.context(() => {
       const stage = document.querySelector('[data-parallax="hero-stage"]');
       if (stage) {

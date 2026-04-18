@@ -10,18 +10,18 @@ export function SiteHeader() {
           BARE-X
         </Link>
         <nav className="hidden items-center gap-8 text-sm text-white/60 lg:flex">
-          <a href="#problem" className="transition hover:text-white">
+          <Link href="/#problem" className="transition hover:text-white">
             Why it works
-          </a>
-          <a href="#products" className="transition hover:text-white">
+          </Link>
+          <Link href="/#explore-products" className="transition hover:text-white">
             Products
-          </a>
-          <a href="#how-it-works" className="transition hover:text-white">
+          </Link>
+          <Link href="/#how-it-works" className="transition hover:text-white">
             Flow
-          </a>
-          <a href="#social-proof" className="transition hover:text-white">
+          </Link>
+          <Link href="/#social-proof" className="transition hover:text-white">
             Results
-          </a>
+          </Link>
         </nav>
         <Button href="/quiz" className="px-3 py-2 text-[11px] sm:px-4 sm:text-xs">
           Analyze My Skin
