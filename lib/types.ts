@@ -39,6 +39,7 @@ export type ProductCategory = "Face Wash" | "Moisturizer" | "Sunscreen";
 export type ProductAudience = "MEN" | "WOMEN" | "ALL";
 
 export type ProductRecommendation = {
+  assetKey: string;
   category: ProductCategory;
   name: string;
   subtitle: string;

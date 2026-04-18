@@ -7,7 +7,7 @@ import { useQuizStore } from "@/store/quiz-store";
 import { ScoreBars } from "@/components/result/score-bars";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { ProductPrototype } from "@/components/product/product-prototype";
+import { ProductVisual } from "@/components/product/product-visual";
 
 export function ResultClient() {
   const storeResult = useQuizStore((state) => state.result);
@@ -88,7 +88,7 @@ export function ResultClient() {
             {result.routine.map((product) => (
               <div key={product.name} className="rounded-[28px] border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.025] p-4 md:rounded-[32px] md:p-6">
                 <div className="grid gap-4 md:grid-cols-[220px_1fr] md:items-center">
-                  <ProductPrototype product={product} compact className="mx-auto md:mx-0" />
+                  <ProductVisual product={product} compact className="mx-auto md:mx-0" />
                   <div>
                     <div className="flex flex-wrap items-start justify-between gap-4">
                       <div>

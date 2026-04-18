@@ -72,6 +72,7 @@ export const defaultAnswers: QuizAnswers = {
 
 export const productCatalog: Record<string, ProductRecommendation> = {
   acneFaceWash: {
+    assetKey: "acneFaceWash",
     category: "Face Wash",
     name: "Acne Control Cleanser",
     subtitle: "Purifying gel cleanser",
@@ -85,6 +86,7 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     finish: "Carbon matte"
   },
   hydratingFaceWash: {
+    assetKey: "hydratingFaceWash",
     category: "Face Wash",
     name: "Hydrating Cloud Cleanser",
     subtitle: "Low-foam comfort cleanser",
@@ -98,6 +100,7 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     finish: "Satin frost"
   },
   oilControlFaceWash: {
+    assetKey: "oilControlFaceWash",
     category: "Face Wash",
     name: "Oil Control Reset Wash",
     subtitle: "Balancing gel cleanser",
@@ -111,6 +114,7 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     finish: "Graphite matte"
   },
   sensitiveFaceWash: {
+    assetKey: "sensitiveFaceWash",
     category: "Face Wash",
     name: "Barrier Calm Cleanser",
     subtitle: "Fragrance-free milky cleanser",
@@ -124,6 +128,7 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     finish: "Soft-touch matte"
   },
   gelMoisturizer: {
+    assetKey: "gelMoisturizer",
     category: "Moisturizer",
     name: "Weightless Gel Hydrator",
     subtitle: "Fast-absorbing daily moisturizer",
@@ -137,6 +142,7 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     finish: "Obsidian gloss"
   },
   creamMoisturizer: {
+    assetKey: "creamMoisturizer",
     category: "Moisturizer",
     name: "Recovery Cream Moisturizer",
     subtitle: "Barrier-repair moisturizer",
@@ -150,6 +156,7 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     finish: "Pearl matte"
   },
   sunscreen: {
+    assetKey: "sunscreen",
     category: "Sunscreen",
     name: "Invisible Shield SPF 50",
     subtitle: "Daily broad-spectrum sunscreen",

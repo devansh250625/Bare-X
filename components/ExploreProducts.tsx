@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ProductPrototype } from "@/components/product/product-prototype";
+import { ProductVisual } from "@/components/product/product-visual";
 import { Container } from "@/components/ui/container";
 import { productCatalog } from "@/lib/constants";
 import { ProductRecommendation } from "@/lib/types";
@@ -79,7 +79,7 @@ export function ExploreProducts() {
             className="group relative rounded-[2rem] border border-white/10 bg-[#111111] p-5 shadow-[0_28px_80px_rgba(0,0,0,0.36)] transition duration-300 hover:border-accent/20 hover:shadow-[0_34px_100px_rgba(58,134,255,0.12)] sm:p-6"
             >
               <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
-              <ProductPrototype product={product} compact={false} />
+              <ProductVisual product={product} compact={false} />
               <div className="mt-2">
                 <div className="flex items-center justify-between gap-3">
                   <h3 className="text-xl font-semibold tracking-[-0.03em] text-white">{product.name}</h3>

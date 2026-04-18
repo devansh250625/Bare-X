@@ -3,6 +3,7 @@ import ExploreProducts from "@/components/ExploreProducts";
 import { FinalCta } from "@/components/home/final-cta";
 import { FeatureGrid } from "@/components/home/feature-grid";
 import { HeroSection } from "@/components/home/hero-section";
+import { HomeScrollEffects } from "@/components/home/home-scroll-effects";
 import { HowItWorks } from "@/components/home/how-it-works";
 import { SocialProof } from "@/components/home/social-proof";
 import { SiteFooter } from "@/components/layout/site-footer";
@@ -34,6 +35,7 @@ export default function HomePage() {
 
   return (
     <main className="relative overflow-hidden">
+      <HomeScrollEffects />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
