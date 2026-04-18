@@ -36,6 +36,7 @@ export type SkinScore = {
 };
 
 export type ProductCategory = "Face Wash" | "Moisturizer" | "Sunscreen";
+export type ProductAudience = "MEN" | "WOMEN" | "ALL";
 
 export type ProductRecommendation = {
   category: ProductCategory;
@@ -43,6 +44,12 @@ export type ProductRecommendation = {
   subtitle: string;
   ingredients: string[];
   reason: string;
+  audience: ProductAudience;
+  format: string;
+  useTime: "AM" | "PM" | "AM / PM";
+  size: string;
+  accent: string;
+  finish: string;
 };
 
 export type AnalysisPayload = {

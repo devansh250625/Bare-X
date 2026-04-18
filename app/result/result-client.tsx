@@ -7,6 +7,7 @@ import { useQuizStore } from "@/store/quiz-store";
 import { ScoreBars } from "@/components/result/score-bars";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { ProductPrototype } from "@/components/product/product-prototype";
 
 export function ResultClient() {
   const storeResult = useQuizStore((state) => state.result);
@@ -44,19 +45,21 @@ export function ResultClient() {
   );
 
   return (
-    <Container className="py-14 md:py-20">
+    <Container className="py-10 md:py-20">
       <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-        <div className="space-y-8 rounded-[36px] border border-white/10 bg-white/[0.04] p-7">
+        <div className="space-y-6 rounded-[30px] border border-white/10 bg-white/[0.04] p-5 md:rounded-[36px] md:p-7">
           <div>
             <div className="text-xs uppercase tracking-[0.24em] text-accent">Skin Score</div>
-            <h1 className="mt-4 font-display text-5xl font-bold tracking-[-0.06em] text-white md:text-6xl">
+            <h1 className="mt-4 font-display text-4xl font-bold tracking-[-0.06em] text-white sm:text-5xl md:text-6xl">
               {compositeScore}
               <span className="text-white/40">/100</span>
             </h1>
-            <p className="mt-4 text-lg leading-8 text-white/65">{result.explanation}</p>
+            <p className="mt-4 text-base leading-7 text-white/65 sm:text-lg sm:leading-8">
+              {result.explanation}
+            </p>
           </div>
 
-          <div className="rounded-[28px] border border-white/10 bg-black/35 p-5">
+          <div className="rounded-[24px] border border-white/10 bg-black/35 p-4 md:rounded-[28px] md:p-5">
             <p className="mb-5 text-sm uppercase tracking-[0.22em] text-white/45">Metric Breakdown</p>
             <ScoreBars score={result.skinScore} />
           </div>
@@ -71,9 +74,9 @@ export function ResultClient() {
         </div>
 
         <div className="space-y-6">
-          <div className="rounded-[36px] border border-white/10 bg-white/[0.04] p-7">
+          <div className="rounded-[30px] border border-white/10 bg-white/[0.04] p-5 md:rounded-[36px] md:p-7">
             <div className="text-xs uppercase tracking-[0.24em] text-accent">Your Routine</div>
-            <h2 className="mt-4 font-display text-4xl font-bold tracking-[-0.04em] text-white">
+            <h2 className="mt-4 font-display text-3xl font-bold tracking-[-0.04em] text-white md:text-4xl">
               Personalized to your skin profile
             </h2>
             <p className="mt-4 text-base leading-7 text-white/60">
@@ -83,30 +86,35 @@ export function ResultClient() {
 
           <div className="grid gap-5">
             {result.routine.map((product) => (
-              <div key={product.name} className="rounded-[32px] border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.025] p-6">
-                <div className="flex flex-wrap items-start justify-between gap-4">
+              <div key={product.name} className="rounded-[28px] border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.025] p-4 md:rounded-[32px] md:p-6">
+                <div className="grid gap-4 md:grid-cols-[220px_1fr] md:items-center">
+                  <ProductPrototype product={product} compact className="mx-auto md:mx-0" />
                   <div>
+                    <div className="flex flex-wrap items-start justify-between gap-4">
+                      <div>
                     <div className="text-xs uppercase tracking-[0.24em] text-white/45">{product.category}</div>
                     <h3 className="mt-3 text-2xl font-semibold text-white">{product.name}</h3>
                     <p className="mt-2 text-sm text-white/55">{product.subtitle}</p>
-                  </div>
-                  <div className="rounded-full border border-accent/30 bg-accent/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-accent">
-                    Selected
-                  </div>
-                </div>
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {product.ingredients.map((ingredient) => (
-                    <div key={ingredient} className="rounded-full border border-white/10 bg-black/30 px-3 py-2 text-sm text-white/70">
-                      {ingredient}
+                      </div>
+                      <div className="rounded-full border border-accent/30 bg-accent/10 px-4 py-2 text-xs uppercase tracking-[0.22em] text-accent">
+                        Selected
+                      </div>
                     </div>
-                  ))}
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {product.ingredients.map((ingredient) => (
+                        <div key={ingredient} className="rounded-full border border-white/10 bg-black/30 px-3 py-2 text-sm text-white/70">
+                          {ingredient}
+                        </div>
+                      ))}
+                    </div>
+                    <p className="mt-6 text-base leading-7 text-white/65">{product.reason}</p>
+                  </div>
                 </div>
-                <p className="mt-6 text-base leading-7 text-white/65">{product.reason}</p>
               </div>
             ))}
           </div>
 
-          <div className="rounded-[32px] border border-accent/20 bg-accent/10 p-6">
+          <div className="rounded-[28px] border border-accent/20 bg-accent/10 p-5 md:rounded-[32px] md:p-6">
             <div className="text-xs uppercase tracking-[0.24em] text-accent">Next Step</div>
             <h3 className="mt-3 text-3xl font-semibold text-white">Get your routine first.</h3>
             <p className="mt-4 text-base leading-7 text-white/70">

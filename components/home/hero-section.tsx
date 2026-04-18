@@ -5,10 +5,10 @@ import { Container } from "@/components/ui/container";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden py-24 md:py-32">
+    <section className="relative overflow-hidden py-18 md:py-32">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(58,134,255,0.28),transparent_32%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.12),transparent_18%)]" />
       <div className="absolute inset-x-0 top-0 h-[520px] bg-grid-fade bg-[size:52px_52px] opacity-20 [mask-image:linear-gradient(to_bottom,white,transparent)]" />
-      <Container className="relative grid items-center gap-16 lg:grid-cols-[1.15fr_0.85fr]">
+      <Container className="relative grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
         <div className="space-y-8">
           <Reveal>
             <div className="inline-flex rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.24em] text-white/70">
@@ -16,12 +16,12 @@ export function HeroSection() {
             </div>
           </Reveal>
           <Reveal delay={0.05}>
-            <h1 className="max-w-4xl font-display text-5xl font-bold tracking-[-0.06em] text-white md:text-7xl">
+            <h1 className="max-w-4xl font-display text-4xl font-bold tracking-[-0.06em] text-white sm:text-5xl md:text-7xl">
               Stop Guessing Your Skincare
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="max-w-2xl text-lg leading-8 text-white/65 md:text-xl">
+            <p className="max-w-2xl text-base leading-7 text-white/65 sm:text-lg md:text-xl">
               Bare-X analyzes your skin, scores your profile, and builds a routine in 30 seconds
               with precision-first logic and an editorial-grade experience.
             </p>
@@ -44,7 +44,7 @@ export function HeroSection() {
           </Reveal>
         </div>
         <Reveal delay={0.15}>
-          <div className="relative mx-auto max-w-lg rounded-[32px] border border-white/10 bg-white/5 p-6 shadow-glow backdrop-blur-xl">
+          <div className="relative mx-auto w-full max-w-lg rounded-[32px] border border-white/10 bg-white/5 p-4 shadow-glow backdrop-blur-xl sm:p-6">
             <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-accent/20 blur-3xl" />
             <div className="absolute -bottom-10 -left-8 h-32 w-32 rounded-full bg-white/10 blur-3xl" />
             <div className="relative space-y-6">
@@ -57,7 +57,7 @@ export function HeroSection() {
                   Personalized
                 </div>
               </div>
-              <div className="space-y-4 rounded-[28px] border border-white/10 bg-black/40 p-5">
+              <div className="space-y-4 rounded-[28px] border border-white/10 bg-black/40 p-4 sm:p-5">
                 {[
                   ["Acne Risk", "80%"],
                   ["Oil Level", "70%"],
@@ -75,7 +75,7 @@ export function HeroSection() {
                   </div>
                 ))}
               </div>
-              <div className="grid gap-3 md:grid-cols-3">
+              <div className="grid gap-3 sm:grid-cols-3">
                 {["Cleanser", "Moisturizer", "SPF"].map((item) => (
                   <div key={item} className="rounded-3xl border border-white/10 bg-white/5 p-4 text-center">
                     <p className="text-xs uppercase tracking-[0.2em] text-white/45">Recommended</p>

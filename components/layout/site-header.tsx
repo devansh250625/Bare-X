@@ -4,14 +4,17 @@ import { Container } from "@/components/ui/container";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-background/70 backdrop-blur-xl">
-      <Container className="flex h-20 items-center justify-between">
-        <Link href="/" className="font-display text-2xl font-bold tracking-[0.24em] text-white">
+    <header className="sticky top-0 z-50 border-b border-white/5 bg-background/75 backdrop-blur-xl">
+      <Container className="flex h-20 items-center justify-between gap-4">
+        <Link href="/" className="font-display text-xl font-bold tracking-[0.22em] text-white md:text-2xl">
           BARE-X
         </Link>
-        <nav className="hidden items-center gap-8 text-sm text-white/60 md:flex">
+        <nav className="hidden items-center gap-8 text-sm text-white/60 lg:flex">
           <a href="#problem" className="transition hover:text-white">
             Why it works
+          </a>
+          <a href="#products" className="transition hover:text-white">
+            Products
           </a>
           <a href="#how-it-works" className="transition hover:text-white">
             Flow
@@ -20,7 +23,7 @@ export function SiteHeader() {
             Results
           </a>
         </nav>
-        <Button href="/quiz" className="px-4 py-2 text-xs">
+        <Button href="/quiz" className="px-3 py-2 text-[11px] sm:px-4 sm:text-xs">
           Analyze My Skin
         </Button>
       </Container>

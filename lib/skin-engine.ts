@@ -150,7 +150,13 @@ export function mapRoutine(
       ? productCatalog.creamMoisturizer
       : productCatalog.gelMoisturizer;
 
-  return [faceWash, moisturizer, productCatalog.sunscreen];
+  const audience =
+    answers.gender === "Male" ? "MEN" : answers.gender === "Female" ? "WOMEN" : "ALL";
+
+  return [faceWash, moisturizer, productCatalog.sunscreen].map((product) => ({
+    ...product,
+    audience: product.category === "Sunscreen" ? "ALL" : audience
+  }));
 }
 
 export function createFallbackExplanation(answers: QuizAnswers, score: SkinScore) {

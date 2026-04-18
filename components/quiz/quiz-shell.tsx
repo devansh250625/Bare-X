@@ -77,7 +77,7 @@ export function QuizShell() {
   }
 
   return (
-    <div className="rounded-[36px] border border-white/10 bg-white/[0.04] p-5 shadow-glow md:p-8">
+    <div className="rounded-[30px] border border-white/10 bg-white/[0.04] p-4 shadow-glow md:rounded-[36px] md:p-8">
       <div className="mb-8">
         <div className="mb-3 flex items-center justify-between text-xs uppercase tracking-[0.24em] text-white/45">
           <span>{question.step}</span>
@@ -106,7 +106,7 @@ export function QuizShell() {
           >
             <div className="space-y-3">
               <p className="text-xs uppercase tracking-[0.24em] text-accent">Skin Intelligence Quiz</p>
-              <h2 className="font-display text-3xl font-bold tracking-[-0.04em] text-white md:text-4xl">
+              <h2 className="font-display text-2xl font-bold tracking-[-0.04em] text-white sm:text-3xl md:text-4xl">
                 {question.prompt}
               </h2>
             </div>
@@ -125,7 +125,7 @@ export function QuizShell() {
                     onClick={() =>
                       question.type === "multi" ? toggleOption(option) : handleSingleValue(option)
                     }
-                    className={`rounded-[24px] border px-5 py-4 text-left transition duration-300 ${
+                    className={`rounded-[20px] border px-4 py-4 text-left text-sm transition duration-300 sm:rounded-[24px] sm:px-5 sm:text-base ${
                       selected
                         ? "border-accent bg-accent/10 text-white shadow-glow"
                         : "border-white/10 bg-black/35 text-white/70 hover:border-white/20 hover:bg-white/[0.06]"
@@ -145,7 +145,7 @@ export function QuizShell() {
           <Button
             type="button"
             variant="ghost"
-            className="gap-2"
+            className="gap-2 sm:min-w-[120px]"
             onClick={() => setStep((current) => Math.max(current - 1, 0))}
             disabled={step === 0}
           >
@@ -156,7 +156,7 @@ export function QuizShell() {
           {step < quizQuestions.length - 1 ? (
             <Button
               type="button"
-              className="gap-2"
+              className="gap-2 sm:min-w-[180px]"
               onClick={() => setStep((current) => Math.min(current + 1, quizQuestions.length - 1))}
               disabled={!isAnswered(question, answers)}
             >
@@ -164,7 +164,11 @@ export function QuizShell() {
               <ChevronRight className="h-4 w-4" />
             </Button>
           ) : (
-            <Button type="submit" className="gap-2" disabled={loading || !isAnswered(question, answers)}>
+            <Button
+              type="submit"
+              className="gap-2 sm:min-w-[210px]"
+              disabled={loading || !isAnswered(question, answers)}
+            >
               {loading ? "Analyzing..." : "Reveal My Routine"}
               <ChevronRight className="h-4 w-4" />
             </Button>
