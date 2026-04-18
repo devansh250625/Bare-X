@@ -80,7 +80,7 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     audience: "MEN",
     format: "Gel Tube",
     useTime: "AM / PM",
-    size: "120 ML",
+    size: "100 ml",
     accent: "from-cyan-400 via-blue-500 to-indigo-400",
     finish: "Carbon matte"
   },
@@ -93,7 +93,7 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     audience: "WOMEN",
     format: "Soft Cream Tube",
     useTime: "AM / PM",
-    size: "120 ML",
+    size: "100 ml",
     accent: "from-sky-300 via-cyan-400 to-blue-500",
     finish: "Satin frost"
   },
@@ -106,7 +106,7 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     audience: "MEN",
     format: "Gel Tube",
     useTime: "AM / PM",
-    size: "120 ML",
+    size: "100 ml",
     accent: "from-blue-500 via-indigo-500 to-cyan-300",
     finish: "Graphite matte"
   },
@@ -119,7 +119,7 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     audience: "WOMEN",
     format: "Milky Tube",
     useTime: "AM / PM",
-    size: "120 ML",
+    size: "100 ml",
     accent: "from-cyan-200 via-sky-300 to-blue-400",
     finish: "Soft-touch matte"
   },
@@ -132,7 +132,7 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     audience: "MEN",
     format: "Airless Pump",
     useTime: "AM / PM",
-    size: "50 ML",
+    size: "50 ml",
     accent: "from-cyan-300 via-blue-500 to-indigo-500",
     finish: "Obsidian gloss"
   },
@@ -145,7 +145,7 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     audience: "WOMEN",
     format: "Airless Pump",
     useTime: "AM / PM",
-    size: "50 ML",
+    size: "50 ml",
     accent: "from-blue-400 via-sky-300 to-cyan-200",
     finish: "Pearl matte"
   },
@@ -158,7 +158,7 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     audience: "ALL",
     format: "Precision Tube",
     useTime: "AM",
-    size: "60 ML",
+    size: "50 ml",
     accent: "from-white via-sky-300 to-blue-500",
     finish: "Titanium satin"
   }
