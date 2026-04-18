@@ -8,6 +8,7 @@ import { ScoreBars } from "@/components/result/score-bars";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { ProductVisual } from "@/components/product/product-visual";
+import { FormulaPlan } from "@/components/result/formula-plan";
 
 export function ResultClient() {
   const storeResult = useQuizStore((state) => state.result);
@@ -75,12 +76,24 @@ export function ResultClient() {
 
         <div className="space-y-6">
           <div className="rounded-[30px] border border-white/10 bg-white/[0.04] p-5 md:rounded-[36px] md:p-7">
-            <div className="text-xs uppercase tracking-[0.24em] text-accent">Your Routine</div>
+            <div className="text-xs uppercase tracking-[0.24em] text-accent">Formula Guidance</div>
             <h2 className="mt-4 font-display text-3xl font-bold tracking-[-0.04em] text-white md:text-4xl">
-              Personalized to your skin profile
+              What your skin should look for first
             </h2>
             <p className="mt-4 text-base leading-7 text-white/60">
-              This routine is mapped with deterministic rules from your quiz responses, then explained in a more human way by the AI layer.
+              Before recommending Bare-X products, we show the ingredient directions you can look for anywhere. Our future products are mapped to these same formula needs.
+            </p>
+          </div>
+
+          <FormulaPlan formulas={result.formulas} />
+
+          <div className="rounded-[30px] border border-white/10 bg-white/[0.04] p-5 md:rounded-[36px] md:p-7">
+            <div className="text-xs uppercase tracking-[0.24em] text-accent">Bare-X Matches</div>
+            <h2 className="mt-4 font-display text-3xl font-bold tracking-[-0.04em] text-white md:text-4xl">
+              Products we plan to build with those formulas
+            </h2>
+            <p className="mt-4 text-base leading-7 text-white/60">
+              These are launch mockups for demand validation. If you show interest, we’ll notify you first and may send samples when Bare-X launches.
             </p>
           </div>
 
@@ -116,9 +129,9 @@ export function ResultClient() {
 
           <div className="rounded-[28px] border border-accent/20 bg-accent/10 p-5 md:rounded-[32px] md:p-6">
             <div className="text-xs uppercase tracking-[0.24em] text-accent">Next Step</div>
-            <h3 className="mt-3 text-3xl font-semibold text-white">Get your routine first.</h3>
+            <h3 className="mt-3 text-3xl font-semibold text-white">Join the sample and launch list.</h3>
             <p className="mt-4 text-base leading-7 text-white/70">
-              Bare-X is collecting early demand before launch. Join the waitlist to secure first access when these routines go live.
+              No buying today. Share your details if you want launch access, formula updates, and possible sample delivery when Bare-X is ready.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button href="/waitlist">Join Early Access</Button>

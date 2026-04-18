@@ -18,14 +18,14 @@ export type RoutineLevel = "None" | "Basic" | "Advanced";
 export type Gender = "Male" | "Female" | "Prefer not to say";
 
 export type QuizAnswers = {
-  skinType: SkinType;
+  skinType: SkinType | "";
   concerns: Concern[];
-  acneSeverity: AcneSeverity;
-  oilLevel: OilLevel;
-  sensitivity: SensitivityAnswer;
+  acneSeverity: AcneSeverity | "";
+  oilLevel: OilLevel | "";
+  sensitivity: SensitivityAnswer | "";
   lifestyle: LifestyleHabit[];
-  currentRoutine: RoutineLevel;
-  gender: Gender;
+  currentRoutine: RoutineLevel | "";
+  gender: Gender | "";
 };
 
 export type SkinScore = {
@@ -35,7 +35,13 @@ export type SkinScore = {
   sensitivity: number;
 };
 
-export type ProductCategory = "Face Wash" | "Moisturizer" | "Sunscreen";
+export type ProductCategory =
+  | "Face Wash"
+  | "Treatment"
+  | "Moisturizer"
+  | "Sunscreen"
+  | "Body Wash"
+  | "Body Lotion";
 export type ProductAudience = "MEN" | "WOMEN" | "ALL";
 
 export type ProductRecommendation = {
@@ -51,11 +57,22 @@ export type ProductRecommendation = {
   size: string;
   accent: string;
   finish: string;
+  formulaFocus: string[];
+};
+
+export type FormulaRecommendation = {
+  category: "Face Wash" | "Treatment" | "Moisturizer" | "Sunscreen" | "Body Wash" | "Body Lotion";
+  title: string;
+  ingredients: string[];
+  concentration: string;
+  why: string;
+  usage: string;
 };
 
 export type AnalysisPayload = {
   answers: QuizAnswers;
   skinScore: SkinScore;
+  formulas: FormulaRecommendation[];
   routine: ProductRecommendation[];
   explanation: string;
   profile: string[];

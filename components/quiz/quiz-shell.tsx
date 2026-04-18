@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -21,13 +21,17 @@ function isAnswered(question: (typeof quizQuestions)[number], answers: QuizAnswe
 
 export function QuizShell() {
   const router = useRouter();
-  const { answers, updateAnswer, setResult } = useQuizStore();
+  const { answers, updateAnswer, setResult, reset } = useQuizStore();
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   const question = quizQuestions[step];
   const progress = useMemo(() => ((step + 1) / quizQuestions.length) * 100, [step]);
+
+  useEffect(() => {
+    reset();
+  }, [reset]);
 
   function toggleOption(option: string) {
     const key = question.key as keyof QuizAnswers;

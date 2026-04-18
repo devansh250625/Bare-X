@@ -7,9 +7,23 @@ function isValidEmail(email: string) {
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as { name?: string; email?: string };
+    const body = (await request.json()) as {
+      name?: string;
+      email?: string;
+      phone?: string;
+      address?: string;
+      city?: string;
+      postalCode?: string;
+      skinGoal?: string;
+      sampleConsent?: boolean;
+    };
     const email = body.email?.trim().toLowerCase();
     const name = body.name?.trim();
+    const phone = body.phone?.trim();
+    const address = body.address?.trim();
+    const city = body.city?.trim();
+    const postalCode = body.postalCode?.trim();
+    const skinGoal = body.skinGoal?.trim();
 
     if (!email || !isValidEmail(email)) {
       return NextResponse.json({ error: "A valid email is required." }, { status: 400 });
@@ -20,11 +34,23 @@ export async function POST(request: Request) {
         email
       },
       update: {
-        name: name || undefined
+        name: name || undefined,
+        phone: phone || undefined,
+        address: address || undefined,
+        city: city || undefined,
+        postalCode: postalCode || undefined,
+        skinGoal: skinGoal || undefined,
+        sampleConsent: Boolean(body.sampleConsent)
       },
       create: {
         email,
-        name: name || undefined
+        name: name || undefined,
+        phone: phone || undefined,
+        address: address || undefined,
+        city: city || undefined,
+        postalCode: postalCode || undefined,
+        skinGoal: skinGoal || undefined,
+        sampleConsent: Boolean(body.sampleConsent)
       }
     });
 

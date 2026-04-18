@@ -4,7 +4,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { getProductMockupImage } from "@/lib/product-visuals";
 import { ProductRecommendation } from "@/lib/types";
-import { ProductPrototype } from "@/components/product/product-prototype";
 import { cn } from "@/lib/utils";
 
 export function ProductVisual({
@@ -19,7 +18,24 @@ export function ProductVisual({
   const imageSrc = getProductMockupImage(product);
 
   if (!imageSrc) {
-    return <ProductPrototype product={product} compact={compact} className={className} />;
+    return (
+      <motion.div
+        className={cn("relative flex min-h-[260px] items-center justify-center", className)}
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.55 }}
+      >
+        <div className="absolute inset-0 rounded-[34px] bg-[radial-gradient(circle_at_center,rgba(58,134,255,0.18),transparent_62%)] blur-2xl" />
+        <div className="relative rounded-[28px] border border-dashed border-accent/35 bg-black/40 p-6 text-center">
+          <div className="text-xs uppercase tracking-[0.28em] text-accent">AI mockup pending</div>
+          <div className="mt-3 text-lg font-semibold text-white">{product.name}</div>
+          <p className="mt-3 max-w-[18rem] text-sm leading-6 text-white/55">
+            Generate exact packaging assets to replace this placeholder.
+          </p>
+        </div>
+      </motion.div>
+    );
   }
 
   return (

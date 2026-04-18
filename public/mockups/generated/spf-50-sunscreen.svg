@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="floorGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3A86FF" stop-opacity="0.82"/>
+      <stop offset="38%" stop-color="#3A86FF" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#3A86FF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="blackMatte" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#242424"/>
+      <stop offset="36%" stop-color="#0D0D0D"/>
+      <stop offset="70%" stop-color="#050505"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </linearGradient>
+    <linearGradient id="baseBlack" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#111"/>
+      <stop offset="100%" stop-color="#000"/>
+    </linearGradient>
+    <linearGradient id="pumpBlack" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2C2C2C"/>
+      <stop offset="55%" stop-color="#070707"/>
+      <stop offset="100%" stop-color="#000"/>
+    </linearGradient>
+    <pattern id="capRidges" width="8" height="26" patternUnits="userSpaceOnUse">
+      <rect width="8" height="26" fill="#111"/>
+      <rect width="2" height="26" fill="#383838"/>
+    </pattern>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="42" stdDeviation="34" flood-color="#000" flood-opacity="0.72"/>
+    </filter>
+    <filter id="blueBlur" x="-200%" y="-200%" width="500%" height="500%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+    <style>
+      .brand { font-family: Inter, Arial, sans-serif; font-size: 38px; font-weight: 800; letter-spacing: 5px; fill: #F7F7F7; }
+      .title { font-family: Inter, Arial, sans-serif; font-size: 28px; font-weight: 650; letter-spacing: 0.5px; fill: #F4F4F4; }
+      .accentTitle { font-family: Inter, Arial, sans-serif; font-size: 28px; font-weight: 750; letter-spacing: 0.5px; fill: #48A1FF; }
+      .spf { font-family: Inter, Arial, sans-serif; font-size: 42px; font-weight: 850; letter-spacing: 4px; fill: #48A1FF; }
+      .detail { font-family: Inter, Arial, sans-serif; font-size: 17px; font-weight: 550; letter-spacing: 0.2px; fill: #F2F2F2; }
+      .meta { font-family: Inter, Arial, sans-serif; font-size: 15px; font-weight: 500; letter-spacing: 0.5px; fill: rgba(255,255,255,0.78); }
+      .size { font-family: Inter, Arial, sans-serif; font-size: 20px; font-weight: 500; letter-spacing: 0.4px; fill: #F5F5F5; }
+    </style>
+  </defs>
+  <rect width="1200" height="1200" fill="#050505"/>
+  <rect width="1200" height="1200" fill="url(#grain)" opacity="0.12"/>
+  <ellipse cx="600" cy="980" rx="430" ry="74" fill="url(#floorGlow)" opacity="0.92"/>
+  <ellipse cx="600" cy="1008" rx="330" ry="24" fill="#061D37" opacity="0.7"/>
+  <g transform="translate(300 170)">
+    
+    <g filter="url(#softShadow)">
+      <path d="M168 98 H432 V124 H168 Z" fill="url(#capRidges)" opacity="0.9"/>
+      <path d="M178 118 H422 L466 620 Q470 676 414 690 H186 Q130 676 134 620 Z" fill="url(#blackMatte)" stroke="rgba(255,255,255,0.13)" stroke-width="1.4"/>
+      <path d="M196 132 C178 238 168 420 186 624" stroke="rgba(255,255,255,0.16)" stroke-width="3" opacity="0.55"/>
+      <path d="M405 132 C426 260 428 455 412 624" stroke="#3A86FF" stroke-width="5" opacity="0.24" filter="url(#blueBlur)"/>
+      <path d="M152 620 H448 V704 H152 Z" fill="url(#baseBlack)" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
+      <path d="M270 674 Q300 635 330 674 Z" fill="#020202" stroke="rgba(255,255,255,0.11)" stroke-width="1"/>
+      <text x="300" y="208" text-anchor="middle" class="brand">BARE-X</text>
+      <text x="300" y="282" text-anchor="middle" class="spf">SPF 50</text>
+      <text x="300" y="330" text-anchor="middle" class="accentTitle">SUNSCREEN</text>
+      <line x1="222" y1="368" x2="378" y2="368" stroke="#3A86FF" stroke-width="1.5" opacity="0.85"/>
+      <text x="300" y="420" text-anchor="middle" class="detail">Broad Spectrum Protection</text>
+      <text x="300" y="508" text-anchor="middle" class="meta">AI Personalized Formula</text>
+      <text x="300" y="604" text-anchor="middle" class="size">50 ml</text>
+    </g>
+  </g>
+</svg>

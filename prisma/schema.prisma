@@ -11,6 +11,12 @@ model User {
   id            String         @id @default(cuid())
   name          String?
   email         String         @unique
+  phone         String?
+  address       String?
+  city          String?
+  postalCode    String?
+  skinGoal      String?
+  sampleConsent Boolean        @default(false)
   createdAt     DateTime       @default(now())
   quizResponses QuizResponse[]
 }

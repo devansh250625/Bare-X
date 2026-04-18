@@ -60,21 +60,21 @@ export const quizQuestions = [
 ] as const;
 
 export const defaultAnswers: QuizAnswers = {
-  skinType: "Combination",
+  skinType: "",
   concerns: [],
-  acneSeverity: "None",
-  oilLevel: "Medium",
-  sensitivity: "No",
+  acneSeverity: "",
+  oilLevel: "",
+  sensitivity: "",
   lifestyle: [],
-  currentRoutine: "None",
-  gender: "Male"
+  currentRoutine: "",
+  gender: ""
 };
 
 export const productCatalog: Record<string, ProductRecommendation> = {
   acneFaceWash: {
     assetKey: "acneFaceWash",
     category: "Face Wash",
-    name: "Acne Control Cleanser",
+    name: "Acne Control Face Wash",
     subtitle: "Purifying gel cleanser",
     ingredients: ["Salicylic Acid", "Green Tea", "Panthenol"],
     reason: "Selected to reduce pore congestion and lower breakout pressure without stripping the barrier.",
@@ -84,11 +84,13 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     size: "100 ml",
     accent: "from-cyan-400 via-blue-500 to-indigo-400",
     finish: "Carbon matte"
+    ,
+    formulaFocus: ["Salicylic Acid 2%", "Niacinamide 4%", "Panthenol"]
   },
   hydratingFaceWash: {
     assetKey: "hydratingFaceWash",
     category: "Face Wash",
-    name: "Hydrating Cloud Cleanser",
+    name: "Barrier Hydrating Face Wash",
     subtitle: "Low-foam comfort cleanser",
     ingredients: ["Hyaluronic Acid", "Glycerin", "Betaine"],
     reason: "Chosen to clean gently while reinforcing water retention for tight or flaky skin.",
@@ -97,12 +99,13 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     useTime: "AM / PM",
     size: "100 ml",
     accent: "from-sky-300 via-cyan-400 to-blue-500",
-    finish: "Satin frost"
+    finish: "Satin frost",
+    formulaFocus: ["Hyaluronic Acid", "Glycerin", "Ceramides"]
   },
   oilControlFaceWash: {
     assetKey: "oilControlFaceWash",
     category: "Face Wash",
-    name: "Oil Control Reset Wash",
+    name: "Oil Control Face Wash",
     subtitle: "Balancing gel cleanser",
     ingredients: ["Niacinamide", "Zinc PCA", "Amino Surfactants"],
     reason: "Built for shine control and texture refinement when sebum levels run high.",
@@ -111,7 +114,8 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     useTime: "AM / PM",
     size: "100 ml",
     accent: "from-blue-500 via-indigo-500 to-cyan-300",
-    finish: "Graphite matte"
+    finish: "Graphite matte",
+    formulaFocus: ["Niacinamide 5%", "Zinc PCA", "Amino Surfactants"]
   },
   sensitiveFaceWash: {
     assetKey: "sensitiveFaceWash",
@@ -125,12 +129,13 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     useTime: "AM / PM",
     size: "100 ml",
     accent: "from-cyan-200 via-sky-300 to-blue-400",
-    finish: "Soft-touch matte"
+    finish: "Soft-touch matte",
+    formulaFocus: ["Aloe Vera", "Ceramides", "Oat Extract"]
   },
   gelMoisturizer: {
     assetKey: "gelMoisturizer",
     category: "Moisturizer",
-    name: "Weightless Gel Hydrator",
+    name: "Oil-Free Moisturizer",
     subtitle: "Fast-absorbing daily moisturizer",
     ingredients: ["Hyaluronic Acid", "Niacinamide", "Squalane"],
     reason: "Matched to oil-prone profiles needing hydration without heaviness or greasy residue.",
@@ -139,12 +144,13 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     useTime: "AM / PM",
     size: "50 ml",
     accent: "from-cyan-300 via-blue-500 to-indigo-500",
-    finish: "Obsidian gloss"
+    finish: "Obsidian gloss",
+    formulaFocus: ["Hyaluronic Acid", "Ceramides", "Niacinamide"]
   },
   creamMoisturizer: {
     assetKey: "creamMoisturizer",
     category: "Moisturizer",
-    name: "Recovery Cream Moisturizer",
+    name: "Barrier Repair Moisturizer",
     subtitle: "Barrier-repair moisturizer",
     ingredients: ["Ceramides", "Shea Butter", "Cholesterol"],
     reason: "Selected to restore comfort and prevent moisture loss in dry or compromised skin.",
@@ -153,12 +159,13 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     useTime: "AM / PM",
     size: "50 ml",
     accent: "from-blue-400 via-sky-300 to-cyan-200",
-    finish: "Pearl matte"
+    finish: "Pearl matte",
+    formulaFocus: ["Ceramides", "Shea Butter", "Squalane"]
   },
   sunscreen: {
     assetKey: "sunscreen",
     category: "Sunscreen",
-    name: "Invisible Shield SPF 50",
+    name: "SPF 50 Sunscreen",
     subtitle: "Daily broad-spectrum sunscreen",
     ingredients: ["SPF 50 Filters", "Vitamin E", "Antioxidant Complex"],
     reason: "Every routine includes broad-spectrum SPF because pigmentation, sensitivity, and aging all worsen without daily UV defense.",
@@ -167,7 +174,53 @@ export const productCatalog: Record<string, ProductRecommendation> = {
     useTime: "AM",
     size: "50 ml",
     accent: "from-white via-sky-300 to-blue-500",
-    finish: "Titanium satin"
+    finish: "Titanium satin",
+    formulaFocus: ["Broad Spectrum SPF 50", "No White Cast", "Vitamin E"]
+  },
+  retinalSerum: {
+    assetKey: "retinalSerum",
+    category: "Treatment",
+    name: "Retinal Night Serum",
+    subtitle: "Texture and tone refinement serum",
+    ingredients: ["Encapsulated Retinal", "Peptides", "Bisabolol"],
+    reason: "Recommended as a future night treatment direction for texture, dullness, and post-acne marks when the skin barrier is ready.",
+    audience: "ALL",
+    format: "Precision Airless Pump",
+    useTime: "PM",
+    size: "30 ml",
+    accent: "from-blue-400 via-cyan-300 to-white",
+    finish: "Black glass satin",
+    formulaFocus: ["Encapsulated Retinal 0.05%", "Peptides", "Bisabolol"]
+  },
+  bodyWash: {
+    assetKey: "bodyWash",
+    category: "Body Wash",
+    name: "Body Acne Control Wash",
+    subtitle: "Body breakout and sweat reset wash",
+    ingredients: ["Salicylic Acid", "Zinc PCA", "Tea Tree"],
+    reason: "Mapped for gym, sweat, and outdoor lifestyles where back, chest, and shoulder congestion can show up.",
+    audience: "ALL",
+    format: "Body Wash Bottle",
+    useTime: "AM / PM",
+    size: "250 ml",
+    accent: "from-cyan-400 via-blue-500 to-indigo-500",
+    finish: "Matte sport bottle",
+    formulaFocus: ["Salicylic Acid 2%", "Zinc PCA", "Tea Tree"]
+  },
+  bodyLotion: {
+    assetKey: "bodyLotion",
+    category: "Body Lotion",
+    name: "Body Repair Lotion",
+    subtitle: "Daily body barrier lotion",
+    ingredients: ["Urea", "Lactic Acid", "Ceramides"],
+    reason: "Selected for body dryness, rough texture, and uneven feel without making the routine heavy.",
+    audience: "ALL",
+    format: "Body Lotion Pump",
+    useTime: "AM / PM",
+    size: "250 ml",
+    accent: "from-sky-300 via-blue-500 to-white",
+    finish: "Soft matte pump",
+    formulaFocus: ["Urea 5%", "Lactic Acid", "Ceramides"]
   }
 };
 

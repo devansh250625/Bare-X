@@ -1,77 +1,88 @@
 # Bare-X Original Mockups Setup
 
-This file is the exact path from CSS prototypes to original product mockups and a more premium motion system.
+This file explains the current exact-label product packaging workflow.
 
 ## What is already done in code
 
-- The site can now use real generated product images automatically.
-- If a generated image exists, the homepage and result page will show it.
-- If an image does not exist yet, the site falls back to the code-based packaging mockup.
-- A Gemini image-generation script now exists at `scripts/generate-product-mockups.mjs`.
-- The project is prepared for optional React Three Fiber usage later.
+- The site uses static packaging assets from `public/mockups/generated`.
+- Labels are deterministic, so product names, ingredients, and sizes stay exact.
+- AI image-generation scripts were removed because free APIs produced poor labels and inconsistent packaging.
+- If you later want true 3D, add React Three Fiber only when real `.glb` assets are ready.
 
 ## Folder structure you will use
 
-- `public/mockups/reference/`
-  Put your visual reference image here.
 - `public/mockups/generated/`
-  Generated product images will be written here.
+  Product packaging assets are written here.
 - `lib/generated-product-assets.ts`
-  This file is updated automatically by the generation script.
+  This file maps product keys to asset paths.
 
 ## Recommended route
 
 Use this order:
 
-1. Generate original static product renders with Gemini.
-2. Review and regenerate until the three master products look right.
-3. Use those renders across homepage and AI recommendations.
-4. Only after that, decide whether to move to true 3D in Blender or Spline.
+1. Generate exact-label packaging assets locally.
+2. Review them in the website.
+3. Commit the assets to GitHub.
+4. Vercel deploys the committed static files.
+5. Only later, if needed, move to true 3D in Blender or Spline.
 
-## Step-by-step for Gemini image generation
+## Step-by-step for exact-label packaging assets
 
-1. Put your reference image into:
-   `public/mockups/reference/barex-style.png`
+The default starter path now generates deterministic packaging assets. This avoids the biggest problem with AI image generators: misspelled labels and unstable product shapes.
 
-2. Add this to `.env`:
-   `GEMINI_API_KEY="your_key_here"`
-
-3. Run:
+1. Run:
 
    ```bash
-   npm run generate:mockups -- --reference public/mockups/reference/barex-style.png
+   npm run generate:mockups
    ```
 
-4. The script will generate:
-   - acne face wash render
-   - oil-free moisturizer render
-   - sunscreen render
+2. The script will generate exact-label SVG product assets:
+   - acne face wash
+   - hydrating face wash
+   - oil-free moisturizer
+   - sunscreen
+   - body wash
+   - body lotion
 
-5. The script will also update:
+3. The script will update:
    `lib/generated-product-assets.ts`
 
-6. Start the app:
+4. Start the app:
 
    ```bash
    npm run dev
    ```
 
-7. Check:
+5. Check:
    - homepage hero
    - explore products section
    - quiz result page
 
-## If the generated images are not good enough
+6. If the assets look good, commit them:
 
-Regenerate after changing the prompt in:
-- `scripts/generate-product-mockups.mjs`
+   ```bash
+   git add public/mockups/generated lib/generated-product-assets.ts
+   git commit -m "Add exact Bare-X packaging assets"
+   git push
+   ```
+
+7. Vercel will deploy those committed static images automatically.
+
+Important:
+- Do not generate product images during Vercel build.
+- Generate locally, review quality, commit the images, then deploy.
+
+## If the packaging assets are not good enough
+
+Regenerate after changing the SVG template in:
+- `scripts/generate-packaging-assets.mjs`
 
 Tweak:
-- camera angle
-- text amount
-- lighting
-- gloss vs matte finish
-- blue glow strength
+- exact label text
+- bottle or tube shape
+- lighting and glow
+- typography sizing
+- matte/gloss feel
 
 ## When to use Blender or Spline
 
@@ -96,12 +107,7 @@ Export final web assets as `.glb`.
 
 ## Web 3D route
 
-This project is already prepared for:
-- `three`
-- `@react-three/fiber`
-- `@react-three/drei`
-
-If you later add `.glb` files, we can plug them in without changing the whole project structure.
+If you later add `.glb` files, install `three`, `@react-three/fiber`, and `@react-three/drei`, then we can plug real models into the existing product visual system.
 
 ## Motion direction for a more premium site
 
@@ -120,9 +126,8 @@ Avoid:
 
 ## Best-quality stack for the future
 
-- Gemini image generation for fast branded product renders
 - Blender for final packaging models
-- React Three Fiber for in-browser 3D
+- React Three Fiber for in-browser 3D when real models exist
 - GSAP for cinematic scroll
 - Framer Motion for UI transitions
 - Rive for ultra-polished interface motion if needed later
