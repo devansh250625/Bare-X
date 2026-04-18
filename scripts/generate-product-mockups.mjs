@@ -124,6 +124,24 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error(error);
+  if (error?.status === 404) {
+    console.error(
+      [
+        `Model not available: ${imageModel}`,
+        "Your Gemini project/key likely does not have access to that image-generation model on this API tier/version.",
+        "For a free-only workflow, use local generation instead of relying on Gemini image APIs."
+      ].join("\n")
+    );
+  } else if (error?.status === 429) {
+    console.error(
+      [
+        `Quota/rate-limit hit for model: ${imageModel}`,
+        "Your Gemini project currently has no usable free-tier quota for this image-generation model.",
+        "For a free-only workflow, use local generation instead of relying on Gemini image APIs."
+      ].join("\n")
+    );
+  } else {
+    console.error(error);
+  }
   process.exit(1);
 });
