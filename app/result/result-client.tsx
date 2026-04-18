@@ -101,7 +101,9 @@ export function ResultClient() {
             {result.routine.map((product) => (
               <div key={product.name} className="rounded-[28px] border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.025] p-4 md:rounded-[32px] md:p-6">
                 <div className="grid gap-4 md:grid-cols-[220px_1fr] md:items-center">
-                  <ProductVisual product={product} compact className="mx-auto md:mx-0" />
+                  <div className="flex min-h-[260px] items-center justify-center">
+                    <ProductVisual product={product} compact className="mx-auto md:mx-0" />
+                  </div>
                   <div>
                     <div className="flex flex-wrap items-start justify-between gap-4">
                       <div>

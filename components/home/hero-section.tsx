@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { Reveal } from "@/components/animations/reveal";
-import { HeroProductStage } from "@/components/home/hero-product-stage";
+import { HeroBlueprintCard } from "@/components/home/hero-blueprint-card";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 
@@ -47,37 +47,8 @@ export function HeroSection() {
           </Reveal>
         </div>
         <Reveal delay={0.15}>
-          <div
-            data-parallax-section
-            className="relative mx-auto w-full max-w-xl overflow-hidden rounded-[34px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-4 shadow-glow backdrop-blur-xl sm:p-6"
-          >
-            <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-accent/20 blur-3xl" />
-            <div className="absolute -bottom-10 -left-8 h-32 w-32 rounded-full bg-white/10 blur-3xl" />
-            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-accent/10 to-transparent" />
-            <div className="relative space-y-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-xs uppercase tracking-[0.24em] text-white/45">Launch Preview</p>
-                  <p className="mt-2 text-2xl font-semibold text-white">Original Bare-X Packaging</p>
-                </div>
-                <div className="rounded-full border border-accent/30 bg-accent/10 px-3 py-2 text-xs text-accent">
-                  Future Inventory
-                </div>
-              </div>
-              <HeroProductStage />
-              <div className="grid gap-3 sm:grid-cols-3">
-                {[
-                  ["Acne Control", "Matte black tube"],
-                  ["Oil-Free Moisturizer", "Airless pump bottle"],
-                  ["SPF 50", "Protected daily tube"]
-                ].map(([item, detail]) => (
-                  <div key={item} className="rounded-3xl border border-white/10 bg-black/30 p-4 text-center">
-                    <p className="text-xs uppercase tracking-[0.2em] text-white/45">{detail}</p>
-                    <p className="mt-2 text-sm font-medium text-white">{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div data-parallax-section>
+            <HeroBlueprintCard />
           </div>
         </Reveal>
       </Container>

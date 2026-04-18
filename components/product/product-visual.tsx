@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 
 export function ProductVisual({
   product,
+  compact = false,
   className
 }: {
   product: ProductRecommendation;
@@ -55,7 +56,10 @@ export function ProductVisual({
         <img
           src={imageSrc}
           alt={product.name}
-          className="mx-auto h-auto w-full max-w-[280px] object-contain drop-shadow-[0_22px_40px_rgba(0,0,0,0.55)]"
+          className={cn(
+            "mx-auto h-auto w-full object-contain drop-shadow-[0_24px_34px_rgba(0,0,0,0.5)] [image-rendering:auto]",
+            compact ? "max-w-[250px]" : "max-w-[360px]"
+          )}
         />
       </motion.div>
     </motion.div>
