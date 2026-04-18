@@ -6,6 +6,8 @@ import path from "node:path";
 const cwd = process.cwd();
 const outputDir = path.join(cwd, "public", "mockups", "generated");
 const generatedModulePath = path.join(cwd, "lib", "generated-product-assets.ts");
+const imageModel =
+  process.env.GEMINI_IMAGE_MODEL || "gemini-2.0-flash-preview-image-generation";
 
 const args = process.argv.slice(2);
 const referenceIndex = args.indexOf("--reference");
@@ -81,7 +83,7 @@ async function main() {
       : product.prompt;
 
     const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash-image",
+      model: imageModel,
       contents
     });
 
@@ -118,6 +120,7 @@ async function main() {
 
   await fs.writeFile(generatedModulePath, source);
   console.log(`Updated ${generatedModulePath}`);
+  console.log(`Image model used: ${imageModel}`);
 }
 
 main().catch((error) => {
