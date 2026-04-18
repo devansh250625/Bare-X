@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/container";
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden py-18 md:py-32">
+    <section className="motion-section relative overflow-hidden py-18 md:py-32">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(58,134,255,0.28),transparent_32%),radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.12),transparent_18%)]" />
       <div className="absolute inset-x-0 top-0 h-[520px] bg-grid-fade bg-[size:52px_52px] opacity-20 [mask-image:linear-gradient(to_bottom,white,transparent)]" />
       <div data-orb className="absolute left-[8%] top-24 h-32 w-32 rounded-full bg-accent/10 blur-3xl" />
@@ -19,7 +19,7 @@ export function HeroSection() {
             </div>
           </Reveal>
           <Reveal delay={0.05}>
-            <h1 className="max-w-4xl font-display text-4xl font-bold tracking-[-0.06em] text-white sm:text-5xl md:text-7xl">
+            <h1 className="text-sheen max-w-4xl font-display text-4xl font-bold tracking-[-0.06em] sm:text-5xl md:text-7xl">
               Stop Guessing Your Skincare
             </h1>
           </Reveal>

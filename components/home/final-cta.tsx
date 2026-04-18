@@ -3,9 +3,9 @@ import { Container } from "@/components/ui/container";
 
 export function FinalCta() {
   return (
-    <section className="py-24">
+    <section className="motion-section py-24">
       <Container>
-        <div className="relative overflow-hidden rounded-[40px] border border-accent/20 bg-[radial-gradient(circle_at_top,rgba(58,134,255,0.24),transparent_40%),linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] p-8 md:p-12">
+        <div data-section-child className="relative overflow-hidden rounded-[40px] border border-accent/20 bg-[radial-gradient(circle_at_top,rgba(58,134,255,0.24),transparent_40%),linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] p-8 md:p-12">
           <div className="absolute inset-0 bg-grid-fade bg-[size:48px_48px] opacity-10" />
           <div className="relative max-w-3xl">
             <div className="text-xs uppercase tracking-[0.28em] text-accent">Early Access</div>

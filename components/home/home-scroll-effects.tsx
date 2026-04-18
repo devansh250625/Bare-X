@@ -27,15 +27,41 @@ export function HomeScrollEffects() {
       gsap.utils.toArray<HTMLElement>("[data-parallax-section]").forEach((element) => {
         gsap.fromTo(
           element,
-          { y: 36, opacity: 0.72 },
+          { y: 48, opacity: 0.35, scale: 0.985, filter: "blur(8px)" },
           {
             y: 0,
             opacity: 1,
-            duration: 1.1,
-            ease: "power3.out",
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 1.2,
+            ease: "power4.out",
             scrollTrigger: {
               trigger: element,
-              start: "top 84%"
+              start: "top 78%"
+            }
+          }
+        );
+      });
+
+      gsap.utils.toArray<HTMLElement>(".motion-section").forEach((section) => {
+        const content = section.querySelectorAll("[data-section-child]");
+        if (!content.length) return;
+
+        gsap.fromTo(
+          content,
+          { y: 54, opacity: 0, filter: "blur(12px)" },
+          {
+            y: 0,
+            opacity: 1,
+            filter: "blur(0px)",
+            duration: 1,
+            stagger: 0.08,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 62%",
+              end: "bottom 38%",
+              toggleActions: "play none none reverse"
             }
           }
         );

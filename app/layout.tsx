@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import { BrandIntro } from "@/components/brand/brand-intro";
 import { AppProviders } from "@/components/providers/app-providers";
 import "./globals.css";
 
@@ -66,6 +67,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <body className="bg-background font-sans text-foreground antialiased">
         <AppProviders />
+        <BrandIntro />
         {children}
       </body>
     </html>

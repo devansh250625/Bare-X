@@ -10,6 +10,12 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (min-width: 1024px) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+}
+
 body {
   min-height: 100vh;
   background:
@@ -25,4 +31,41 @@ body {
 ::selection {
   background: rgba(58, 134, 255, 0.35);
   color: #fff;
+}
+
+.motion-section {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+@media (max-width: 1023px) {
+  .motion-section {
+    min-height: auto;
+    display: block;
+    scroll-snap-align: none;
+  }
+}
+
+.text-sheen {
+  background: linear-gradient(90deg, #ffffff 0%, #8ebcff 44%, #ffffff 72%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: textSheen 5.5s ease-in-out infinite;
+}
+
+@keyframes textSheen {
+  0%,
+  35% {
+    background-position: 0% center;
+  }
+  70%,
+  100% {
+    background-position: 220% center;
+  }
 }

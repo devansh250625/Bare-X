@@ -28,10 +28,10 @@ const showcaseProducts: Array<ProductRecommendation & { tag: string }> = [
 
 export function ExploreProducts() {
   return (
-    <section id="explore-products" className="relative py-24">
+    <section id="explore-products" className="motion-section relative py-24">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(58,134,255,0.08),transparent_58%)]" />
       <Container className="relative">
-        <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-3xl text-center" data-section-child>
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -46,7 +46,7 @@ export function ExploreProducts() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.08 }}
-            className="mt-6 font-display text-4xl font-bold tracking-[-0.06em] text-white sm:text-5xl"
+            className="text-sheen mt-6 font-display text-4xl font-bold tracking-[-0.06em] sm:text-5xl"
           >
             Engineered for Your Skin
           </motion.h2>

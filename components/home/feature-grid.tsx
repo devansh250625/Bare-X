@@ -32,13 +32,15 @@ const features = [
 
 export function FeatureGrid() {
   return (
-    <section id="problem" className="py-24">
+    <section id="problem" className="motion-section py-24">
       <Container className="space-y-12">
+        <div data-section-child>
         <SectionHeading
           eyebrow="The Problem"
           title="Skincare feels noisy, generic, and expensive before it ever feels useful."
           description="Users are overwhelmed by routines they do not understand. Bare-X removes that confusion by replacing random product discovery with a guided analysis engine."
         />
+        </div>
         <div className="grid gap-6 md:grid-cols-2">
           {features.map((feature, index) => (
             <Reveal key={feature.title} delay={index * 0.05}>

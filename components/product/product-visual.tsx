@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { getProductMockupImage } from "@/lib/product-visuals";
 import { ProductRecommendation } from "@/lib/types";
@@ -8,7 +7,6 @@ import { cn } from "@/lib/utils";
 
 export function ProductVisual({
   product,
-  compact = false,
   className
 }: {
   product: ProductRecommendation;
@@ -53,13 +51,11 @@ export function ProductVisual({
         transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
         className="relative"
       >
-        <Image
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
           src={imageSrc}
           alt={product.name}
-          width={compact ? 320 : 500}
-          height={compact ? 320 : 500}
-          className="mx-auto h-auto w-full max-w-[260px] object-contain drop-shadow-[0_22px_40px_rgba(0,0,0,0.55)]"
-          priority={!compact}
+          className="mx-auto h-auto w-full max-w-[280px] object-contain drop-shadow-[0_22px_40px_rgba(0,0,0,0.55)]"
         />
       </motion.div>
     </motion.div>

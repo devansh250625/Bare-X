@@ -27,8 +27,9 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24">
+    <section id="how-it-works" className="motion-section py-24">
       <Container className="space-y-12">
+        <div data-section-child>
         <SectionHeading
           eyebrow="How It Works"
           title="A premium diagnostic funnel built to feel sharp, fast, and inevitable."
@@ -40,6 +41,7 @@ export function HowItWorks() {
             </Button>
           }
         />
+        </div>
         <div className="grid gap-6 lg:grid-cols-3">
           {steps.map((step, index) => (
             <Reveal key={step.label} delay={index * 0.08}>

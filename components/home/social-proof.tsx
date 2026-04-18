@@ -10,13 +10,15 @@ const stats = [
 
 export function SocialProof() {
   return (
-    <section id="social-proof" className="py-24">
+    <section id="social-proof" className="motion-section py-24">
       <Container className="space-y-12">
+        <div data-section-child>
         <SectionHeading
           eyebrow="Signal"
           title="Built to validate demand before inventory ever exists."
           description="The platform is engineered like a skincare intelligence product first and a commerce layer second."
         />
+        </div>
         <div className="grid gap-6 lg:grid-cols-3">
           {stats.map((stat, index) => (
             <Reveal key={stat.label} delay={index * 0.06}>
