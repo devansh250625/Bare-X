@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { createWaitlistCoupon } from "@/lib/coupons";
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -54,9 +55,17 @@ export async function POST(request: Request) {
       }
     });
 
+    // Generate a waitlist coupon for this user
+    const coupon = await createWaitlistCoupon(user.id);
+
     return NextResponse.json({
       success: true,
-      userId: user.id
+      userId: user.id,
+      coupon: {
+        code: coupon.code,
+        discountPercent: coupon.discountPercent,
+        type: coupon.type
+      }
     });
   } catch (error) {
     return NextResponse.json(

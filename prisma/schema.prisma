@@ -19,6 +19,7 @@ model User {
   sampleConsent Boolean        @default(false)
   createdAt     DateTime       @default(now())
   quizResponses QuizResponse[]
+  coupons       Coupon[]
 }
 
 model QuizResponse {
@@ -31,4 +32,51 @@ model QuizResponse {
   user            User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   @@index([userId])
+}
+
+model Coupon {
+  id              String       @id @default(cuid())
+  code            String       @unique
+  discountPercent Int          @default(15)
+  type            CouponType   @default(WAITLIST)
+  status          CouponStatus @default(ACTIVE)
+  maxUses         Int          @default(1)
+  currentUses     Int          @default(0)
+  userId          String
+  expiresAt       DateTime?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  redemptions     Redemption[]
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([code])
+  @@index([userId])
+  @@index([status])
+}
+
+model Redemption {
+  id        String   @id @default(cuid())
+  couponId  String
+  orderId   String?
+  amount    Float?
+  discount  Float?
+  createdAt DateTime @default(now())
+  coupon    Coupon   @relation(fields: [couponId], references: [id], onDelete: Cascade)
+
+  @@index([couponId])
+  @@index([orderId])
+}
+
+enum CouponType {
+  WAITLIST
+  REFERRAL
+  PROMO
+  LOYALTY
+}
+
+enum CouponStatus {
+  ACTIVE
+  USED
+  EXPIRED
+  REVOKED
 }
