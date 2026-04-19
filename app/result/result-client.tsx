@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnalysisPayload } from "@/lib/types";
 import { useQuizStore } from "@/store/quiz-store";
@@ -12,14 +12,14 @@ import { FormulaPlan } from "@/components/result/formula-plan";
 
 export function ResultClient() {
   const storeResult = useQuizStore((state) => state.result);
-  const [cachedResult] = useState<AnalysisPayload | null>(() => {
-    if (typeof window === "undefined") {
-      return null;
-    }
+  const [cachedResult, setCachedResult] = useState<AnalysisPayload | null>(null);
 
+  useEffect(() => {
     const cached = window.sessionStorage.getItem("barex-result");
-    return cached ? (JSON.parse(cached) as AnalysisPayload) : null;
-  });
+    if (cached) {
+      setCachedResult(JSON.parse(cached) as AnalysisPayload);
+    }
+  }, []);
 
   const result = storeResult ?? cachedResult;
 
@@ -48,7 +48,7 @@ export function ResultClient() {
   return (
     <Container className="py-10 md:py-20">
       <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-        <div className="space-y-6 rounded-[30px] border border-white/10 bg-white/[0.04] p-5 md:rounded-[36px] md:p-7">
+        <div className="self-start space-y-6 rounded-[30px] border border-white/10 bg-white/[0.04] p-5 md:rounded-[36px] md:p-7 lg:sticky lg:top-24">
           <div>
             <div className="text-xs uppercase tracking-[0.24em] text-accent">Skin Score</div>
             <h1 className="mt-4 font-display text-4xl font-bold tracking-[-0.06em] text-white sm:text-5xl md:text-6xl">

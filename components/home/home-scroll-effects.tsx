@@ -8,48 +8,52 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function HomeScrollEffects() {
   useEffect(() => {
-    const shouldUseLightMode =
-      window.matchMedia("(max-width: 767px)").matches ||
-      window.matchMedia("(pointer: coarse)").matches ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
 
-    if (shouldUseLightMode) {
-      const ctx = gsap.context(() => {
-        gsap.utils.toArray<HTMLElement>("[data-orb]").forEach((element, index) => {
-          gsap.to(element, {
-            y: index % 2 === 0 ? -10 : 8,
-            x: index % 2 === 0 ? 6 : -5,
-            duration: 7 + index,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
-          });
+    const ctx = gsap.context(() => {
+      // Parallax orb floating
+      gsap.utils.toArray<HTMLElement>("[data-orb]").forEach((element, index) => {
+        gsap.to(element, {
+          y: index % 2 === 0 ? -35 : 28,
+          x: index % 2 === 0 ? 20 : -15,
+          duration: 9 + index * 2,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut"
         });
       });
 
-      return () => ctx.revert();
-    }
+      // Section reveal with blur
+      gsap.utils.toArray<HTMLElement>(".motion-section").forEach((section) => {
+        const content = section.querySelectorAll("[data-section-child]");
+        if (!content.length) return;
 
-    const ctx = gsap.context(() => {
-      const stage = document.querySelector('[data-parallax="hero-stage"]');
-      if (stage) {
-        gsap.to(stage, {
-          yPercent: 10,
-          scale: 0.96,
-          ease: "none",
-          scrollTrigger: {
-            trigger: stage,
-            start: "top top",
-            end: "bottom top",
-            scrub: true
+        gsap.fromTo(
+          content,
+          { y: 50, opacity: 0, filter: "blur(10px)" },
+          {
+            y: 0,
+            opacity: 1,
+            filter: "blur(0px)",
+            duration: 1.1,
+            stagger: 0.1,
+            ease: "power4.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 70%",
+              end: "bottom 30%",
+              toggleActions: "play none none reverse"
+            }
           }
-        });
-      }
+        );
+      });
 
+      // Parallax for parallax sections
       gsap.utils.toArray<HTMLElement>("[data-parallax-section]").forEach((element) => {
         gsap.fromTo(
           element,
-          { y: 48, opacity: 0.35, scale: 0.985, filter: "blur(8px)" },
+          { y: 40, opacity: 0.4, scale: 0.99, filter: "blur(6px)" },
           {
             y: 0,
             opacity: 1,
@@ -59,45 +63,10 @@ export function HomeScrollEffects() {
             ease: "power4.out",
             scrollTrigger: {
               trigger: element,
-              start: "top 78%"
+              start: "top 82%"
             }
           }
         );
-      });
-
-      gsap.utils.toArray<HTMLElement>(".motion-section").forEach((section) => {
-        const content = section.querySelectorAll("[data-section-child]");
-        if (!content.length) return;
-
-        gsap.fromTo(
-          content,
-          { y: 54, opacity: 0, filter: "blur(12px)" },
-          {
-            y: 0,
-            opacity: 1,
-            filter: "blur(0px)",
-            duration: 1,
-            stagger: 0.08,
-            ease: "power4.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 62%",
-              end: "bottom 38%",
-              toggleActions: "play none none reverse"
-            }
-          }
-        );
-      });
-
-      gsap.utils.toArray<HTMLElement>("[data-orb]").forEach((element, index) => {
-        gsap.to(element, {
-          y: index % 2 === 0 ? -30 : 25,
-          x: index % 2 === 0 ? 18 : -12,
-          duration: 8 + index,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut"
-        });
       });
     });
 
