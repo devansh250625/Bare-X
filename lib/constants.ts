@@ -1,4 +1,4 @@
-import { Concern, LifestyleHabit, ProductRecommendation, QuizAnswers } from "@/lib/types";
+import { Concern, LifestyleHabit, QuizAnswers, SkinSystem, SystemProduct } from "@/lib/types";
 
 export const quizQuestions = [
   {
@@ -70,182 +70,143 @@ export const defaultAnswers: QuizAnswers = {
   gender: ""
 };
 
-export const productCatalog: Record<string, ProductRecommendation> = {
-  acneFaceWash: {
-    assetKey: "acneFaceWash",
-    category: "Face Wash",
-    name: "Acne Control Face Wash",
-    subtitle: "Purifying gel cleanser",
-    ingredients: ["Salicylic Acid", "Green Tea", "Panthenol"],
-    reason: "Selected to reduce pore congestion and lower breakout pressure without stripping the barrier.",
-    audience: "MEN",
-    format: "Gel Tube",
-    useTime: "AM / PM",
-    size: "100 ml",
-    accent: "from-cyan-400 via-blue-500 to-indigo-400",
-    finish: "Carbon matte"
-    ,
-    formulaFocus: ["Salicylic Acid 2%", "Niacinamide 4%", "Panthenol"],
-    launchStatus: "planned"
+/* ── 3 Core Skin Systems ── */
+
+export const skinSystems: Record<string, SkinSystem> = {
+  "acne-control": {
+    id: "acne-control",
+    name: "Acne Control System",
+    tagline: "Clear skin, rebuilt from the cleanser up.",
+    forWhom: "Oily, acne-prone, breakout-heavy skin",
+    products: [
+      {
+        name: "Acne Control Face Wash",
+        type: "Face Wash",
+        subtitle: "Purifying gel cleanser — AM / PM",
+        format: "Gel Tube · 100 ml",
+        size: "100 ml",
+        keyIngredients: [
+          { name: "Salicylic Acid", concentration: "2%", role: "Unclogs pores and dissolves dead skin buildup inside follicles" },
+          { name: "Niacinamide", concentration: "2%", role: "Reduces inflammation and calms post-breakout redness" },
+          { name: "Zinc PCA", role: "Controls excess sebum production at the source" }
+        ],
+        aiReason: ""
+      },
+      {
+        name: "Oil-Free Moisturizer",
+        type: "Moisturizer",
+        subtitle: "Lightweight gel cream — AM / PM",
+        format: "Airless Pump · 50 ml",
+        size: "50 ml",
+        keyIngredients: [
+          { name: "Hyaluronic Acid", role: "Pulls moisture into skin without adding oil or heaviness" },
+          { name: "Ceramides", role: "Rebuilds the protective skin barrier damaged by acne treatments" },
+          { name: "Niacinamide", concentration: "2%", role: "Strengthens skin texture and reduces pore appearance" }
+        ],
+        aiReason: ""
+      }
+    ]
   },
-  hydratingFaceWash: {
-    assetKey: "hydratingFaceWash",
-    category: "Face Wash",
-    name: "Barrier Hydrating Face Wash",
-    subtitle: "Low-foam comfort cleanser",
-    ingredients: ["Hyaluronic Acid", "Glycerin", "Betaine"],
-    reason: "Chosen to clean gently while reinforcing water retention for tight or flaky skin.",
-    audience: "WOMEN",
-    format: "Soft Cream Tube",
-    useTime: "AM / PM",
-    size: "100 ml",
-    accent: "from-sky-300 via-cyan-400 to-blue-500",
-    finish: "Satin frost",
-    formulaFocus: ["Hyaluronic Acid", "Glycerin", "Ceramides"],
-    launchStatus: "planned"
+  "oil-balance": {
+    id: "oil-balance",
+    name: "Oil Balance System",
+    tagline: "Shine control without stripping your skin.",
+    forWhom: "Combination, oily T-zone, shine-prone skin",
+    products: [
+      {
+        name: "Oil Balance Cleanser",
+        type: "Cleanser",
+        subtitle: "Balancing gel cleanser — AM / PM",
+        format: "Gel Tube · 100 ml",
+        size: "100 ml",
+        keyIngredients: [
+          { name: "Niacinamide", concentration: "3%", role: "Regulates oil production and refines skin texture over time" },
+          { name: "Green Tea Extract", role: "Antioxidant that reduces inflammation and protects against environmental damage" },
+          { name: "Zinc PCA", role: "Targets excess shine without over-drying the skin" }
+        ],
+        aiReason: ""
+      },
+      {
+        name: "Hydra Balance Gel",
+        type: "Gel",
+        subtitle: "Lightweight hydration gel — AM / PM",
+        format: "Pump Bottle · 50 ml",
+        size: "50 ml",
+        keyIngredients: [
+          { name: "Panthenol", concentration: "1%", role: "Soothes skin and improves moisture retention without greasiness" },
+          { name: "Hyaluronic Acid", role: "Lightweight hydration that absorbs fast without clogging" },
+          { name: "Aloe Vera", role: "Calms irritation and keeps skin comfortable all day" }
+        ],
+        aiReason: ""
+      }
+    ]
   },
-  oilControlFaceWash: {
-    assetKey: "oilControlFaceWash",
-    category: "Face Wash",
-    name: "Oil Control Face Wash",
-    subtitle: "Balancing gel cleanser",
-    ingredients: ["Niacinamide", "Zinc PCA", "Amino Surfactants"],
-    reason: "Built for shine control and texture refinement when sebum levels run high.",
-    audience: "MEN",
-    format: "Gel Tube",
-    useTime: "AM / PM",
-    size: "100 ml",
-    accent: "from-blue-500 via-indigo-500 to-cyan-300",
-    finish: "Graphite matte",
-    formulaFocus: ["Niacinamide 5%", "Zinc PCA", "Amino Surfactants"],
-    launchStatus: "inDevelopment"
-  },
-  sensitiveFaceWash: {
-    assetKey: "sensitiveFaceWash",
-    category: "Face Wash",
-    name: "Barrier Calm Cleanser",
-    subtitle: "Fragrance-free milky cleanser",
-    ingredients: ["Aloe Vera", "Ceramides", "Oat Extract"],
-    reason: "Recommended to minimize reactivity and preserve barrier comfort for easily irritated skin.",
-    audience: "WOMEN",
-    format: "Milky Tube",
-    useTime: "AM / PM",
-    size: "100 ml",
-    accent: "from-cyan-200 via-sky-300 to-blue-400",
-    finish: "Soft-touch matte",
-    formulaFocus: ["Aloe Vera", "Ceramides", "Oat Extract"],
-    launchStatus: "inDevelopment"
-  },
-  gelMoisturizer: {
-    assetKey: "gelMoisturizer",
-    category: "Moisturizer",
-    name: "Oil-Free Moisturizer",
-    subtitle: "Fast-absorbing daily moisturizer",
-    ingredients: ["Hyaluronic Acid", "Niacinamide", "Squalane"],
-    reason: "Matched to oil-prone profiles needing hydration without heaviness or greasy residue.",
-    audience: "MEN",
-    format: "Airless Pump",
-    useTime: "AM / PM",
-    size: "50 ml",
-    accent: "from-cyan-300 via-blue-500 to-indigo-500",
-    finish: "Obsidian gloss",
-    formulaFocus: ["Hyaluronic Acid", "Ceramides", "Niacinamide"],
-    launchStatus: "planned"
-  },
-  creamMoisturizer: {
-    assetKey: "creamMoisturizer",
-    category: "Moisturizer",
-    name: "Barrier Repair Moisturizer",
-    subtitle: "Barrier-repair moisturizer",
-    ingredients: ["Ceramides", "Shea Butter", "Cholesterol"],
-    reason: "Selected to restore comfort and prevent moisture loss in dry or compromised skin.",
-    audience: "WOMEN",
-    format: "Airless Pump",
-    useTime: "AM / PM",
-    size: "50 ml",
-    accent: "from-blue-400 via-sky-300 to-cyan-200",
-    finish: "Pearl matte",
-    formulaFocus: ["Ceramides", "Shea Butter", "Squalane"],
-    launchStatus: "inDevelopment"
-  },
-  sunscreen: {
-    assetKey: "sunscreen",
-    category: "Sunscreen",
-    name: "SPF 50 Sunscreen",
-    subtitle: "Daily broad-spectrum sunscreen",
-    ingredients: ["SPF 50 Filters", "Vitamin E", "Antioxidant Complex"],
-    reason: "Every routine includes broad-spectrum SPF because pigmentation, sensitivity, and aging all worsen without daily UV defense.",
-    audience: "ALL",
-    format: "Precision Tube",
-    useTime: "AM",
-    size: "50 ml",
-    accent: "from-white via-sky-300 to-blue-500",
-    finish: "Titanium satin",
-    formulaFocus: ["Broad Spectrum SPF 50", "No White Cast", "Vitamin E"],
-    launchStatus: "planned"
-  },
-  retinalSerum: {
-    assetKey: "retinalSerum",
-    category: "Treatment",
-    name: "Retinal Night Serum",
-    subtitle: "Texture and tone refinement serum",
-    ingredients: ["Encapsulated Retinal", "Peptides", "Bisabolol"],
-    reason: "Recommended as a future night treatment direction for texture, dullness, and post-acne marks when the skin barrier is ready.",
-    audience: "ALL",
-    format: "Precision Airless Pump",
-    useTime: "PM",
-    size: "30 ml",
-    accent: "from-blue-400 via-cyan-300 to-white",
-    finish: "Black glass satin",
-    formulaFocus: ["Encapsulated Retinal 0.05%", "Peptides", "Bisabolol"],
-    launchStatus: "inDevelopment"
-  },
-  bodyWash: {
-    assetKey: "bodyWash",
-    category: "Body Wash",
-    name: "Body Acne Control Wash",
-    subtitle: "Body breakout and sweat reset wash",
-    ingredients: ["Salicylic Acid", "Zinc PCA", "Tea Tree"],
-    reason: "Mapped for gym, sweat, and outdoor lifestyles where back, chest, and shoulder congestion can show up.",
-    audience: "ALL",
-    format: "Body Wash Bottle",
-    useTime: "AM / PM",
-    size: "250 ml",
-    accent: "from-cyan-400 via-blue-500 to-indigo-500",
-    finish: "Matte sport bottle",
-    formulaFocus: ["Salicylic Acid 2%", "Zinc PCA", "Tea Tree"],
-    launchStatus: "planned"
-  },
-  bodyLotion: {
-    assetKey: "bodyLotion",
-    category: "Body Lotion",
-    name: "Body Repair Lotion",
-    subtitle: "Daily body barrier lotion",
-    ingredients: ["Urea", "Lactic Acid", "Ceramides"],
-    reason: "Selected for body dryness, rough texture, and uneven feel without making the routine heavy.",
-    audience: "ALL",
-    format: "Body Lotion Pump",
-    useTime: "AM / PM",
-    size: "250 ml",
-    accent: "from-sky-300 via-blue-500 to-white",
-    finish: "Soft matte pump",
-    formulaFocus: ["Urea 5%", "Lactic Acid", "Ceramides"],
-    launchStatus: "planned"
+  "hydration": {
+    id: "hydration",
+    name: "Hydration System",
+    tagline: "Deep moisture for skin that feels tight.",
+    forWhom: "Dry, dehydrated, flaky, or sensitive skin",
+    products: [
+      {
+        name: "Gentle Hydrating Cleanser",
+        type: "Cleanser",
+        subtitle: "Low-foam comfort cleanser — AM / PM",
+        format: "Cream Tube · 100 ml",
+        size: "100 ml",
+        keyIngredients: [
+          { name: "Gentle Surfactants", role: "Cleans without disrupting the natural moisture barrier" },
+          { name: "Aloe Vera", role: "Provides instant soothing relief for tight, dry skin" },
+          { name: "Glycerin", role: "Draws and locks moisture into the outer skin layers" }
+        ],
+        aiReason: ""
+      },
+      {
+        name: "Barrier Repair Moisturizer",
+        type: "Moisturizer",
+        subtitle: "Rich cream moisturizer — AM / PM",
+        format: "Airless Pump · 50 ml",
+        size: "50 ml",
+        keyIngredients: [
+          { name: "Ceramides", role: "Rebuilds and strengthens the protective lipid barrier" },
+          { name: "Hyaluronic Acid", role: "Multi-weight hydration that penetrates multiple skin layers" },
+          { name: "Squalane", role: "Plant-derived oil that mimics natural skin oils for deep nourishment" }
+        ],
+        aiReason: ""
+      }
+    ]
   }
 };
 
+/* ── Universal Sunscreen ── */
+
+export const universalSunscreen: SystemProduct = {
+  name: "SPF 50 Daily Shield",
+  type: "Sunscreen",
+  subtitle: "Broad-spectrum daily sunscreen — AM",
+  format: "Precision Tube · 50 ml",
+  size: "50 ml",
+  keyIngredients: [
+    { name: "SPF 50 Filters", role: "Full UVA + UVB protection against sun damage and aging" },
+    { name: "Vitamin E", role: "Antioxidant shield that prevents free radical damage" },
+    { name: "No White Cast Formula", role: "Invisible finish that works on all skin tones" }
+  ],
+  aiReason: "Every skin type needs daily UV protection. Sun exposure accelerates aging, worsens pigmentation, and weakens your skin barrier — regardless of your other concerns."
+};
+
 export const concernLabels: Concern[] = [
-  "Acne",
-  "Pigmentation",
-  "Dullness",
-  "Oiliness",
-  "Dryness",
-  "Dark spots"
+  "Acne", "Pigmentation", "Dullness", "Oiliness", "Dryness", "Dark spots"
 ];
 
 export const lifestyleLabels: LifestyleHabit[] = [
-  "Sleeps late",
-  "Works outdoors",
-  "Gym regularly",
-  "High stress"
+  "Sleeps late", "Works outdoors", "Gym regularly", "High stress"
 ];
+
+// Legacy productCatalog — kept for backward compatibility with ExploreProducts
+export const productCatalog: Record<string, any> = {
+  acneFaceWash: { assetKey: "acneFaceWash", category: "Face Wash", name: "Acne Control Face Wash", subtitle: "Purifying gel cleanser", ingredients: ["Salicylic Acid 2%", "Niacinamide 2%", "Zinc PCA"], reason: "", audience: "ALL", format: "Gel Tube", useTime: "AM / PM", size: "100 ml", accent: "", finish: "", formulaFocus: [], launchStatus: "planned" },
+  gelMoisturizer: { assetKey: "gelMoisturizer", category: "Moisturizer", name: "Oil-Free Moisturizer", subtitle: "Lightweight gel cream", ingredients: ["Hyaluronic Acid", "Ceramides"], reason: "", audience: "ALL", format: "Airless Pump", useTime: "AM / PM", size: "50 ml", accent: "", finish: "", formulaFocus: [], launchStatus: "planned" },
+  sunscreen: { assetKey: "sunscreen", category: "Sunscreen", name: "SPF 50 Daily Shield", subtitle: "Broad-spectrum sunscreen", ingredients: ["SPF 50", "No White Cast", "Vitamin E"], reason: "", audience: "ALL", format: "Precision Tube", useTime: "AM", size: "50 ml", accent: "", finish: "", formulaFocus: [], launchStatus: "planned" },
+  hydratingFaceWash: { assetKey: "hydratingFaceWash", category: "Face Wash", name: "Gentle Hydrating Cleanser", subtitle: "Low-foam comfort cleanser", ingredients: ["Aloe Vera", "Glycerin"], reason: "", audience: "ALL", format: "Cream Tube", useTime: "AM / PM", size: "100 ml", accent: "", finish: "", formulaFocus: [], launchStatus: "planned" },
+  bodyWash: { assetKey: "bodyWash", category: "Body Wash", name: "Oil Balance Cleanser", subtitle: "Balancing gel cleanser", ingredients: ["Niacinamide 3%", "Green Tea"], reason: "", audience: "ALL", format: "Gel Tube", useTime: "AM / PM", size: "100 ml", accent: "", finish: "", formulaFocus: [], launchStatus: "planned" },
+  bodyLotion: { assetKey: "bodyLotion", category: "Body Lotion", name: "Barrier Repair Moisturizer", subtitle: "Rich cream moisturizer", ingredients: ["Ceramides", "Squalane"], reason: "", audience: "ALL", format: "Airless Pump", useTime: "AM / PM", size: "50 ml", accent: "", finish: "", formulaFocus: [], launchStatus: "planned" }
+};

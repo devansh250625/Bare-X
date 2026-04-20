@@ -17,7 +17,7 @@ export async function POST(request: Request) {
         data: {
           answers,
           skinScore: payload.skinScore,
-          recommendations: payload.routine
+          recommendations: payload.assignedSystem
         }
       });
 

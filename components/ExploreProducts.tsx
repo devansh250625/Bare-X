@@ -1,193 +1,124 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { TextSplitReveal } from "@/components/animations/text-split-reveal";
-import { ProductVisual } from "@/components/product/product-visual";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { skinSystems, universalSunscreen } from "@/lib/constants";
+import { SkinSystem } from "@/lib/types";
+import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { productCatalog } from "@/lib/constants";
-import { ProductRecommendation } from "@/lib/types";
 
-const showcaseProducts: Array<ProductRecommendation & { tag: string }> = [
-  {
-    ...productCatalog.acneFaceWash,
-    ingredients: ["Salicylic Acid 2%", "Niacinamide"],
-    tag: "Oily / Acne-Prone"
-  },
-  {
-    ...productCatalog.gelMoisturizer,
-    name: "Oil-Free Moisturizer",
-    ingredients: ["Hyaluronic Acid", "Ceramides"],
-    tag: "Combination / Oily"
-  },
-  {
-    ...productCatalog.sunscreen,
-    name: "SPF 50 Sunscreen",
-    ingredients: ["Broad Spectrum", "No White Cast"],
-    tag: "All Skin Types"
-  },
-  {
-    ...productCatalog.hydratingFaceWash,
-    ingredients: ["Hyaluronic Acid", "Ceramides"],
-    tag: "Dry / Sensitive"
-  },
-  {
-    ...productCatalog.bodyWash,
-    ingredients: ["Salicylic Acid 2%", "Zinc PCA"],
-    tag: "Body Acne"
-  },
-  {
-    ...productCatalog.bodyLotion,
-    ingredients: ["Urea 5%", "Ceramides"],
-    tag: "Body Texture"
-  }
-];
+const systemColors: Record<string, { bg: string; border: string; badge: string; image: string }> = {
+  "acne-control": { bg: "bg-blue-50", border: "border-blue-100", badge: "bg-blue-100 text-blue-700", image: "/products/acne-system.png" },
+  "oil-balance": { bg: "bg-emerald-50", border: "border-emerald-100", badge: "bg-emerald-100 text-emerald-700", image: "/products/oil-system.png" },
+  "hydration":   { bg: "bg-violet-50", border: "border-violet-100", badge: "bg-violet-100 text-violet-700", image: "/products/hydration-system.png" }
+};
 
-export function ExploreProducts() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-  const bgOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+function SystemCard({ system }: { system: SkinSystem }) {
+  const colors = systemColors[system.id] || systemColors["hydration"];
 
   return (
-    <section id="explore-products" ref={sectionRef} className="relative py-20 md:py-32 z-[2]">
-      {/* Animated background glow */}
-      <motion.div
-        style={{ opacity: bgOpacity }}
-        className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,rgba(58,134,255,0.08),transparent)]"
-      />
+    <div className={`rounded-3xl border ${colors.border} ${colors.bg} p-6 transition-all duration-500 hover:shadow-[0_8px_40px_rgba(26,26,46,0.08)] md:p-7`}>
+      {/* Product mockup image */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={colors.image} alt={system.name} className="mx-auto mb-5 h-40 w-full rounded-2xl object-cover" />
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <h3 className="font-display text-xl font-bold text-foreground">{system.name}</h3>
+          <p className="mt-1 text-sm text-foreground/45">{system.tagline}</p>
+        </div>
+        <span className={`shrink-0 rounded-full px-3 py-1 text-[10px] font-medium uppercase tracking-[0.1em] ${colors.badge}`}>
+          {system.id === "acne-control" ? "Most Popular" : system.id === "oil-balance" ? "Balanced" : "Gentle"}
+        </span>
+      </div>
 
+      <div className="mt-1 text-[11px] text-foreground/35">For: {system.forWhom}</div>
+
+      <div className="mt-5 space-y-3">
+        {system.products.map((product) => (
+          <div key={product.name} className="rounded-2xl border border-foreground/6 bg-white p-4">
+            <div className="flex items-center justify-between gap-2">
+              <h4 className="text-sm font-semibold text-foreground">{product.name}</h4>
+              <span className="text-[10px] text-foreground/30">{product.format}</span>
+            </div>
+            <p className="mt-1 text-[12px] text-foreground/40">{product.subtitle}</p>
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {product.keyIngredients.map((ing) => (
+                <span key={ing.name} className="rounded-full border border-foreground/6 bg-background px-2.5 py-1 text-[10px] text-foreground/50">
+                  {ing.name}{ing.concentration ? ` ${ing.concentration}` : ""}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function ExploreProducts() {
+  const systems = Object.values(skinSystems);
+
+  return (
+    <section id="explore-products" className="relative py-20 md:py-28">
       <Container className="relative">
-        {/* Section header */}
         <div className="mx-auto max-w-2xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-[10px] uppercase tracking-[0.35em] text-accent"
-          >
-            Our Products
+          <motion.div initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+            className="text-[10px] uppercase tracking-[0.35em] text-accent">
+            3 Precision Systems
           </motion.div>
-
-          <TextSplitReveal
-            as="h2"
-            delay={0.1}
-            className="text-sheen mt-5 font-display text-3xl font-bold tracking-[-0.04em] sm:text-4xl md:text-5xl"
-          >
+          <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.08 }}
+            className="mt-4 font-display text-3xl font-bold tracking-[-0.04em] text-foreground sm:text-4xl md:text-5xl">
             Engineered for Your Skin
-          </TextSplitReveal>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-white/50 sm:text-base"
-          >
-            Six precision formulas we&apos;re validating first. Built around real skin needs.
+          </motion.h2>
+          <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+            viewport={{ once: true }} transition={{ delay: 0.18 }}
+            className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-foreground/45">
+            Not random products. Complete solutions — each system is a cleanser + moisturizer pair designed to work together.
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mx-auto mt-6 h-px w-32 bg-gradient-to-r from-transparent via-accent to-transparent shadow-[0_0_20px_rgba(58,134,255,0.6)]"
-          />
         </div>
 
-        {/* Mobile: horizontal scroll carousel */}
-        <div className="mt-12 md:hidden">
-          <div className="horizontal-scroll px-2">
-            {showcaseProducts.map((product, index) => (
-              <motion.article
-                key={product.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6, delay: index * 0.05 }}
-                className="product-card w-[80vw] max-w-[320px] rounded-[24px] border border-white/8 bg-[#0a0a0f] p-4"
-              >
-                <div className="flex h-[260px] items-center justify-center">
-                  <ProductVisual product={product} compact />
-                </div>
-                <div className="mt-3">
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="text-base font-semibold text-white">{product.name}</h3>
-                    <span className="shrink-0 rounded-full border border-accent/25 bg-accent/8 px-2.5 py-1 text-[9px] uppercase tracking-[0.18em] text-accent">
-                      {product.tag}
-                    </span>
-                  </div>
-                  <div className="mt-3 flex flex-wrap gap-1.5">
-                    {product.ingredients.map((ingredient) => (
-                      <span
-                        key={ingredient}
-                        className="rounded-full border border-white/8 bg-white/[0.03] px-2.5 py-1.5 text-[10px] uppercase tracking-[0.12em] text-white/55"
-                      >
-                        {ingredient}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-          {/* Scroll hint */}
-          <div className="mt-4 flex justify-center gap-1">
-            {showcaseProducts.map((_, i) => (
-              <div key={i} className="h-1 w-6 rounded-full bg-white/10" />
-            ))}
-          </div>
-        </div>
-
-        {/* Desktop: grid layout */}
-        <div className="mt-14 hidden gap-6 md:grid md:grid-cols-2 xl:grid-cols-3">
-          {showcaseProducts.map((product, index) => (
-            <motion.article
-              key={product.name}
-              initial={{ opacity: 0, y: 40, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        {/* System cards */}
+        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          {systems.map((system, i) => (
+            <motion.div key={system.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
-              transition={{
-                duration: 0.8,
-                delay: index * 0.1,
-                ease: [0.22, 1, 0.36, 1]
-              }}
-              className="product-card group relative rounded-[28px] border border-white/8 bg-[#0a0a0f] p-5 shadow-luxury sm:p-6"
+              transition={{ duration: 0.7, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Top shine line */}
-              <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-
-              {/* Product image */}
-              <div className="flex min-h-[320px] items-center justify-center">
-                <ProductVisual product={product} compact={false} />
-              </div>
-
-              {/* Product info */}
-              <div className="mt-3">
-                <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-lg font-semibold tracking-[-0.02em] text-white">{product.name}</h3>
-                  <span className="shrink-0 rounded-full border border-accent/25 bg-accent/8 px-3 py-1 text-[9px] uppercase tracking-[0.2em] text-accent">
-                    {product.tag}
-                  </span>
-                </div>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {product.ingredients.map((ingredient) => (
-                    <span
-                      key={ingredient}
-                      className="rounded-full border border-white/8 bg-white/[0.03] px-3 py-1.5 text-[10px] uppercase tracking-[0.14em] text-white/55"
-                    >
-                      {ingredient}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.article>
+              <SystemCard system={system} />
+            </motion.div>
           ))}
         </div>
+
+        {/* Universal sunscreen */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.3 }}
+          className="mx-auto mt-8 max-w-2xl rounded-2xl border border-foreground/6 bg-white p-5 shadow-[0_2px_16px_rgba(26,26,46,0.04)] md:p-6"
+        >
+          <div className="flex items-center gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-xl">☀️</div>
+            <div className="flex-1">
+              <h4 className="font-semibold text-foreground">{universalSunscreen.name}</h4>
+              <p className="mt-0.5 text-sm text-foreground/40">Added to every system. {universalSunscreen.subtitle}</p>
+            </div>
+            <span className="hidden rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[10px] font-medium text-amber-700 sm:inline-block">
+              Universal
+            </span>
+          </div>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
+          viewport={{ once: true }} transition={{ delay: 0.4 }}
+          className="mt-10 flex justify-center"
+        >
+          <Button href="/quiz" className="group gap-2">
+            Find Your System
+            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+          </Button>
+        </motion.div>
       </Container>
     </section>
   );

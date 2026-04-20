@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { createWaitlistCoupon } from "@/lib/coupons";
+import { sendWaitlistEmail } from "@/lib/resend";
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -8,58 +9,49 @@ function isValidEmail(email: string) {
 
 export async function POST(request: Request) {
   try {
-    const body = (await request.json()) as {
-      name?: string;
-      email?: string;
-      phone?: string;
-      address?: string;
-      city?: string;
-      postalCode?: string;
-      skinGoal?: string;
-      sampleConsent?: boolean;
-    };
+    const body = (await request.json()) as { email?: string };
     const email = body.email?.trim().toLowerCase();
-    const name = body.name?.trim();
-    const phone = body.phone?.trim();
-    const address = body.address?.trim();
-    const city = body.city?.trim();
-    const postalCode = body.postalCode?.trim();
-    const skinGoal = body.skinGoal?.trim();
 
     if (!email || !isValidEmail(email)) {
       return NextResponse.json({ error: "A valid email is required." }, { status: 400 });
     }
 
-    const user = await prisma.user.upsert({
-      where: {
-        email
-      },
-      update: {
-        name: name || undefined,
-        phone: phone || undefined,
-        address: address || undefined,
-        city: city || undefined,
-        postalCode: postalCode || undefined,
-        skinGoal: skinGoal || undefined,
-        sampleConsent: Boolean(body.sampleConsent)
-      },
-      create: {
-        email,
-        name: name || undefined,
-        phone: phone || undefined,
-        address: address || undefined,
-        city: city || undefined,
-        postalCode: postalCode || undefined,
-        skinGoal: skinGoal || undefined,
-        sampleConsent: Boolean(body.sampleConsent)
-      }
+    // Check if user already exists with a coupon
+    const existingUser = await prisma.user.findUnique({
+      where: { email },
+      include: { coupons: { where: { type: "WAITLIST" }, take: 1 } }
     });
 
-    // Generate a waitlist coupon for this user
+    if (existingUser && existingUser.coupons.length > 0) {
+      // Already joined — return existing coupon
+      return NextResponse.json({
+        success: true,
+        alreadyJoined: true,
+        userId: existingUser.id,
+        coupon: {
+          code: existingUser.coupons[0].code,
+          discountPercent: existingUser.coupons[0].discountPercent,
+          type: existingUser.coupons[0].type
+        }
+      });
+    }
+
+    const user = await prisma.user.upsert({
+      where: { email },
+      update: {},
+      create: { email }
+    });
+
     const coupon = await createWaitlistCoupon(user.id);
+
+    // Send branded confirmation email (non-blocking)
+    sendWaitlistEmail(email, coupon.code, coupon.discountPercent).catch((err) => {
+      console.error("[Waitlist] Email send failed:", err);
+    });
 
     return NextResponse.json({
       success: true,
+      alreadyJoined: false,
       userId: user.id,
       coupon: {
         code: coupon.code,
@@ -68,11 +60,12 @@ export async function POST(request: Request) {
       }
     });
   } catch (error) {
+    console.error("[Waitlist] Error:", error);
+
+    // Friendly message for database/server errors
     return NextResponse.json(
-      {
-        error: error instanceof Error ? error.message : "Unable to save waitlist entry."
-      },
-      { status: 500 }
+      { error: "Our servers are warming up. Please try again in a moment — we don't want you to miss your spot." },
+      { status: 503 }
     );
   }
 }

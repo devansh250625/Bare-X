@@ -1,45 +1,40 @@
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/layout/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
 import { Container } from "@/components/ui/container";
 import { WaitlistForm } from "@/components/waitlist/waitlist-form";
 
 export const metadata: Metadata = {
   title: "Early Access Waitlist",
   description:
-    "Join the Bare-X early access waitlist and get first access to personalized skincare routines and launch updates.",
-  alternates: {
-    canonical: "/waitlist"
-  }
+    "Join the Bare-X early access waitlist. Get a personalized skincare system + 15% off coupon at launch.",
+  alternates: { canonical: "/waitlist" }
 };
 
 export default function WaitlistPage() {
   return (
     <main className="min-h-screen">
       <SiteHeader />
-      <Container className="grid gap-10 py-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:py-16">
-        <div className="space-y-6">
-          <div className="text-xs uppercase tracking-[0.24em] text-accent">Launch Queue</div>
-          <h1 className="font-display text-3xl font-bold tracking-[-0.05em] text-white sm:text-4xl md:text-6xl">
-            Join early access and capture your highest-intent users now.
-          </h1>
-          <p className="max-w-2xl text-base leading-7 text-white/65 sm:text-lg sm:leading-8">
-            Bare-X is designed for pre-demand validation. Every email becomes signal for future launches, subscriptions, and smarter product prioritization.
-          </p>
-          <div className="grid gap-4 sm:grid-cols-3">
-            {[
-              ["Personalized routine", "Delivered first"],
-              ["Priority launch access", "No noise, just updates"],
-              ["Demand signal captured", "Ready for growth"]
-            ].map(([title, detail]) => (
-              <div key={title} className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5">
-                <div className="text-base font-medium text-white">{title}</div>
-                <div className="mt-2 text-sm text-white/55">{detail}</div>
-              </div>
-            ))}
+      <Container className="flex min-h-[80vh] items-center justify-center pb-16 pt-28 sm:pt-32">
+        <div className="grid w-full max-w-4xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="space-y-5">
+            <div className="text-[10px] uppercase tracking-[0.25em] text-accent">Early Access</div>
+            <h1 className="font-display text-3xl font-bold tracking-[-0.04em] text-foreground sm:text-4xl md:text-5xl">
+              Get your personalized routine + 15% off.
+            </h1>
+            <p className="max-w-md text-base leading-relaxed text-foreground/50">
+              Join the waitlist. We&apos;ll send you an exclusive launch coupon and first access to your AI-matched skincare system.
+            </p>
+            <div className="flex flex-wrap gap-4 text-[12px] text-foreground/35">
+              <span>✓ No payment required</span>
+              <span>✓ Coupon sent instantly</span>
+              <span>✓ Cancel anytime</span>
+            </div>
           </div>
+          <WaitlistForm />
         </div>
-        <WaitlistForm />
       </Container>
+      <SiteFooter />
     </main>
   );
 }

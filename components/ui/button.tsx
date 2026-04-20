@@ -5,11 +5,11 @@ import { cn } from "@/lib/utils";
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   href?: string;
   children: ReactNode;
-  variant?: "primary" | "ghost";
+  variant?: "primary" | "ghost" | "dark";
 };
 
 const baseClassName =
-  "inline-flex items-center justify-center rounded-full border border-white/10 px-5 py-3 text-sm font-medium tracking-[0.16em] uppercase transition duration-300 hover:-translate-y-0.5";
+  "inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-medium tracking-[0.08em] uppercase transition-all duration-300 hover:-translate-y-0.5 active:scale-[0.97]";
 
 export function Button({
   href,
@@ -18,10 +18,14 @@ export function Button({
   variant = "primary",
   ...props
 }: ButtonProps) {
-  const variantClassName =
-    variant === "primary"
-      ? "bg-accent text-white shadow-glow hover:bg-[#5a9cff]"
-      : "bg-white/5 text-white hover:border-accent/50 hover:bg-white/10";
+  const variantClassName = {
+    primary:
+      "bg-foreground text-white shadow-[0_4px_16px_rgba(26,26,46,0.2)] hover:shadow-[0_8px_32px_rgba(26,26,46,0.3)] hover:bg-[#2a2a44]",
+    ghost:
+      "bg-transparent text-foreground border border-foreground/15 hover:border-foreground/30 hover:bg-foreground/5",
+    dark:
+      "bg-white text-surface-dark shadow-[0_4px_16px_rgba(0,0,0,0.15)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
+  }[variant];
 
   const classes = cn(baseClassName, variantClassName, className);
 
